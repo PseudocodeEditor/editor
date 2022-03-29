@@ -1,3 +1,5 @@
 node_modules/
 .replit
 replit.nix
+editor.bundle.js
+editor.bundle.d.ts
