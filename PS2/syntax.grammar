@@ -1,0 +1,53 @@
+@top Program { expression* }
+
+@skip { space | LineComment }
+
+expression {
+  Identifier |
+  String |
+  Number |
+  Boolean |
+  Type |
+  Keyword |
+  ModuleKeyword |
+  FileKeyword |
+  Assignment |
+  Operator |
+  Application { "(" expression* ")" | "[" expression* "]" | "{" expression* "}" | ApplicationStart expression* ApplicationEnd }
+}
+
+
+@tokens {
+  @precedence { LineComment, Type, ApplicationStart, ApplicationEnd, Keyword, ModuleKeyword, FileKeyword, Boolean, Assignment, Operator, Number, Identifier }
+  
+  Identifier { $[a-zA-Z_0-9]+ }
+
+  ApplicationStart { "IF" | "WHILE" | "REPEAT" | "TO" | "FUNCTION" | "PROCEDURE" | "CASE" }
+  ApplicationEnd { "ENDIF" | "ENDWHILE" | "UNTIL" | "NEXT" | "ENDFUNCTION" | "ENDPROCEDURE" | "ENDCASE" }
+
+  String { '"' (!["\\] | "\\" _)* '"' }
+
+  Number { $[.0-9]+ }
+
+  Boolean { "TRUE" | "FALSE" }
+
+  Type { "INTEGER" | "REAL" | "CHAR" | "STRING" | "BOOLEAN" | "DATE" | "ARRAY" }
+
+  Keyword { "OR" | "AND" | "REPEAT" | "UNTIL" | "IF" | "THEN" | "ELSE" | "ENDIF" | "WHILE" | "DO" | "ENDWHILE" | "OUTPUT" | "INPUT" | "DECLARE" | "PROCEDURE" | "ENDPROCEDURE" | "OF" | "CALL" | "FUNCTION" | "ENDFUNCTION" | "RETURNS" | "RETURN" | "FOR" | "TO" | "STEP" | "NEXT" | "CASE" | "ENDCASE" | "OTHERWISE" | "CONSTANT" | "BYREF" | "BYVAL" | "NOT" | "TYPE" | "ENDTYPE" }
+
+  ModuleKeyword { "MID" | "LENGTH" | "LEFT" | "RIGHT" | "LCASE" | "UCASE" | "TO_UPPER" | "TO_LOWER" | "NUM_TO_STR" | "STR_TO_NUM" | "INT" | "ASC" | "CHR" | "MOD" | "DIV" }
+
+  FileKeyword { "OPENFILE" | "CLOSEFILE" | "EOF" | "FOR READ" | "FOR WRITE" | "FOR APPEND" | "WRITEFILE" | "READFILE" | "RANDOM" | "SEEK" | "GETRECORD" | "PUTRECORD" }
+  
+  Assignment { "<-" }
+
+  Operator { "+" | "-" | "*" | "/" | "&" }
+
+  LineComment { "//" ![\n]* }
+
+  space { $[ \t\n\r]+ }
+
+  "(" ")"
+}
+
+@detectDelim
