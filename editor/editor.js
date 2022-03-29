@@ -1,4 +1,3 @@
-import React, { useState, useRef, useEffect } from "react";
 import {indentWithTab, defaultKeymap, indentLess, indentMore} from "@codemirror/commands"
 import {acceptCompletion} from "@codemirror/autocomplete"
 import {indentOnInput, indentUnit} from "@codemirror/language"
@@ -14,13 +13,29 @@ const themeExtensions = {
   dark: [psDark, psDarkHighlight]
 }
 
-const [theme, setTheme] = useState('dark');
-const container = useRef(null);
+//const [theme, setTheme] = useState('dark');
+//const container = useRef(null);
 
 
 const editor = new EditorView({
   state: EditorState.create({
-  doc: `OUTPUT "Hello World!"`,
+  doc: `// File handling example
+
+DECLARE LineOfText : STRING
+OPENFILE "FileA.txt" FOR READ
+OPENFILE "FileB.txt" FOR WRITE
+WHILE NOT EOF("FileA.txt") DO
+    READFILE "FileA.txt", LineOfText
+    IF LineOfText = "" THEN
+        WRITEFILE "FileB.txt", "---"
+    ELSE
+        WRITEFILE "FileB.txt", LineOfText
+    ENDIF
+ENDWHILE
+CLOSEFILE "FileA.txt"
+CLOSEFILE "FileB.txt"
+
+`,
   extensions: [
     basicSetup,
     keymap.of([
