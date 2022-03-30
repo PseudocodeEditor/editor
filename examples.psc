@@ -84,3 +84,4 @@ WHILE NOT EOF("FileA.txt") DO
 ENDWHILE
 CLOSEFILE "FileA.txt"
 CLOSEFILE "FileB.txt"
+

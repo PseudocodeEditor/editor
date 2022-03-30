@@ -74,7 +74,7 @@ document.querySelector("#upload").addEventListener('change', (event) => {
   if ('files' in input && input.files.length > 0) {
 	  readFileContent(input.files[0])
       .then(content => {
-  	    const update = state.update({changes: {from: 0, to: state.doc.length, insert: content}})
+  	    const update = editor.state.update({changes: {from: 0, to: editor.state.doc.length, insert: content}})
         editor.update([update])
       }).catch(error => console.log(error))
   }
@@ -88,3 +88,21 @@ function readFileContent(file) {
     reader.readAsText(file)
   })
 }
+
+document.querySelector("#download-button").addEventListener("click", () => {  
+  const file = new Blob([editor.state.doc.toString()], {type: "text"});
+  if (window.navigator.msSaveOrOpenBlob)
+    window.navigator.msSaveOrOpenBlob(file, "myProgram.psc");
+  else {
+    const a = document.createElement("a")
+    const url = URL.createObjectURL(file);
+    a.href = url;
+    a.download = "myProgram.psc";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function() {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);  
+    }, 0); 
+  }
+})
