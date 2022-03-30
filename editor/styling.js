@@ -7,6 +7,7 @@ const psLight = EditorView.theme({
       backgroundColor: "#FFFFFF",
   },
   ".cm-scroller": {
+      fontFamily: "'JetBrains Mono', monospace !important",
       lineHeight: "1.6",
       fontSize: "13px"
   },
@@ -54,6 +55,7 @@ const psDark = EditorView.theme({
       backgroundColor: "#1f1f24",
   },
   ".cm-scroller": {
+      fontFamily: "'JetBrains Mono', monospace !important",
       lineHeight: "1.6",
       fontSize: "13px"
   },
@@ -71,6 +73,56 @@ const psDark = EditorView.theme({
   },
   ".cm-gutters": {
       backgroundColor: "#1f1f24",
+      color: "#575757",
+      border: "none"
+  },
+  ".cm-activeLine": {
+      backgroundColor: "#23252B",
+  },
+  ".cm-activeLineGutter": {
+    backgroundColor: "#23252B!important",
+    color: "white",
+  },
+  ".cm-foldPlaceholder": {
+    backgroundColor: "#3F3F41",
+    color: "#9F9FA0",
+    border: "none",
+    borderRadius: "5px",
+    padding: "0 6px",
+    margin: "0 3.5px",
+    fontFamily: "Hiragino Sans",
+    fontWeight: "bold",
+    fontSize: "14px",
+    lineHeight: "10px",
+  },
+}, {
+    dark: true
+});
+
+const psHighContrast = EditorView.theme({
+  "&": {
+      color: "white",
+      backgroundColor: "#18171B",
+  },
+  ".cm-scroller": {
+      fontFamily: "'FantasqueSansMonoRegular', monospace !important",
+      lineHeight: "1.65",
+      fontSize: "14px"
+  },
+  ".cm-tooltip.cm-tooltip-autocomplete": {
+      "& > ul": {
+          fontFamily: "'FantasqueSansMonoRegular', monospace !important",
+          fontSize: "13px"
+      }
+  },
+  "&.cm-focused .cm-cursor": {
+      borderLeftColor: "white"
+  },
+  "&.cm-focused .cm-selectionBackground, ::selection": {
+      backgroundColor: "#343C4B"
+  },
+  ".cm-gutters": {
+      backgroundColor: "#18171B",
       color: "#575757",
       border: "none"
   },
@@ -199,4 +251,55 @@ const psDarkHighlight = HighlightStyle.define([
   },
 ])
 
-export { psLight, psDark, psLightHighlight, psDarkHighlight }
+const psHighContrastHighlight = HighlightStyle.define([
+  {
+      tag: tags.name,
+      color: "white"
+  },
+  {
+      tag: tags.bool,
+      color: "#5DD8FF"
+  },
+  {
+      tag: tags.typeName,
+      color: "#DEC1FF"
+  },
+  {
+      tag: tags.keyword,
+      color: "#FC6BAA"
+  },
+  {
+      tag: tags.definitionKeyword,
+      color: "#FC6BAA"
+  },
+  {
+      tag: tags.moduleKeyword,
+      color: "#C08AFF"
+  },
+   {
+      tag: tags.modifier,
+      color: "#C08AFF"
+  },
+  {
+      tag: tags.operator,
+      color: "#FC6BAA"
+  },
+  {
+      tag: tags.string,
+      color: "#FC7467"
+  },
+  {
+      tag: tags.number,
+      color: "#D0BC56"
+  },
+  {
+      tag: tags.lineComment,
+      color: "#7CB554"
+  },
+  {
+      tag: tags.comment,
+      color: "#7CB554"
+  },
+])
+
+export { psLight, psDark, psLightHighlight, psDarkHighlight, psHighContrast, psHighContrastHighlight }
