@@ -30,6 +30,22 @@ const psLight = EditorView.theme({
   ".cm-activeLine": {
       backgroundColor: "#E8F2FF",
   },
+  ".cm-activeLineGutter": {
+    backgroundColor: "#E8F2FF!important",
+    color: "black",
+  },
+  ".cm-foldPlaceholder": {
+    backgroundColor: "#D9D9D9",
+    color: "#6E6E6E",
+    border: "none",
+    borderRadius: "5px",
+    padding: "0 6px",
+    margin: "0 3.5px",
+    fontFamily: "Hiragino Sans",
+    fontWeight: "bold",
+    fontSize: "14px",
+    lineHeight: "10px",
+  },
 })
 
 const psDark = EditorView.theme({
@@ -60,6 +76,22 @@ const psDark = EditorView.theme({
   },
   ".cm-activeLine": {
       backgroundColor: "#23252B",
+  },
+  ".cm-activeLineGutter": {
+    backgroundColor: "#23252B!important",
+    color: "white",
+  },
+  ".cm-foldPlaceholder": {
+    backgroundColor: "#3F3F41",
+    color: "#9F9FA0",
+    border: "none",
+    borderRadius: "5px",
+    padding: "0 6px",
+    margin: "0 3.5px",
+    fontFamily: "Hiragino Sans",
+    fontWeight: "bold",
+    fontSize: "14px",
+    lineHeight: "10px",
   },
 }, {
     dark: true

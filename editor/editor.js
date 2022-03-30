@@ -16,21 +16,19 @@ const themeExtensions = {
 //const [theme, setTheme] = useState('dark');
 //const container = useRef(null);
 
-
-const editor = new EditorView({
-  state: EditorState.create({
+const state = EditorState.create({
   doc: `// File handling example
 
 DECLARE LineOfText : STRING
 OPENFILE "FileA.txt" FOR READ
 OPENFILE "FileB.txt" FOR WRITE
 WHILE NOT EOF("FileA.txt") DO
-    READFILE "FileA.txt", LineOfText
-    IF LineOfText = "" THEN
-        WRITEFILE "FileB.txt", "---"
-    ELSE
-        WRITEFILE "FileB.txt", LineOfText
-    ENDIF
+  READFILE "FileA.txt", LineOfText
+  IF LineOfText = "" THEN
+      WRITEFILE "FileB.txt", "---"
+  ELSE
+      WRITEFILE "FileB.txt", LineOfText
+  ENDIF
 ENDWHILE
 CLOSEFILE "FileA.txt"
 CLOSEFILE "FileB.txt"
@@ -63,7 +61,30 @@ CLOSEFILE "FileB.txt"
     psDarkHighlight,
     PS2()
   ]
-  }),
+})
+
+const editor = new EditorView({
+  state: state,
   //...themeExtensions[theme],
   parent: document.querySelector("#editor")
 })
+
+document.querySelector("#upload").addEventListener('change', (event) => {
+	const input = event.target
+  if ('files' in input && input.files.length > 0) {
+	  readFileContent(input.files[0])
+      .then(content => {
+  	    const update = state.update({changes: {from: 0, to: state.doc.length, insert: content}})
+        editor.update([update])
+      }).catch(error => console.log(error))
+  }
+})
+
+function readFileContent(file) {
+	const reader = new FileReader()
+  return new Promise((resolve, reject) => {
+    reader.onload = event => resolve(event.target.result)
+    reader.onerror = error => reject(error)
+    reader.readAsText(file)
+  })
+}
