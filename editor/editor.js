@@ -53,6 +53,16 @@ CLOSEFILE "FileB.txt"
         preventDefault: true,
         run: indentLess,
       },
+      {
+        key: "Ctrl-s",
+        preventDefault: true,
+        run: () => { document.querySelector("#download-button").click() }
+      },      
+      {
+        key: "Ctrl-o",
+        preventDefault: true,
+        run: () => { document.querySelector("#upload").click() }
+      }
     ]),
     indentUnit.of("	"),
     highlightActiveLineGutter(),
