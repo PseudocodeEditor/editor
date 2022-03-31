@@ -18,7 +18,6 @@ const themeExtensions = {
 
 const state = EditorState.create({
   doc: `// File handling example
-
 DECLARE LineOfText : STRING
 OPENFILE "FileA.txt" FOR READ
 OPENFILE "FileB.txt" FOR WRITE
@@ -32,7 +31,6 @@ WHILE NOT EOF("FileA.txt") DO
 ENDWHILE
 CLOSEFILE "FileA.txt"
 CLOSEFILE "FileB.txt"
-
 `,
   extensions: [
     basicSetup,
@@ -54,12 +52,12 @@ CLOSEFILE "FileB.txt"
         run: indentLess,
       },
       {
-        key: "Ctrl-s",
+        key: "Mod-s",
         preventDefault: true,
         run: () => { document.querySelector("#download-button").click() }
       },      
       {
-        key: "Ctrl-o",
+        key: "Mod-o",
         preventDefault: true,
         run: () => { document.querySelector("#upload").click() }
       }
