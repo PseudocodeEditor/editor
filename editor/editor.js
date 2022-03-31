@@ -1,6 +1,6 @@
-import {indentWithTab, defaultKeymap, indentLess, indentMore} from "@codemirror/commands"
+import {defaultKeymap, indentLess, indentMore} from "@codemirror/commands"
 import {acceptCompletion} from "@codemirror/autocomplete"
-import {indentOnInput, indentUnit} from "@codemirror/language"
+import {indentUnit} from "@codemirror/language"
 import {EditorView, keymap, highlightActiveLine} from "@codemirror/view"
 import {highlightActiveLineGutter} from "@codemirror/gutter"
 import {EditorState, basicSetup} from "@codemirror/basic-setup"
