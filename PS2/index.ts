@@ -35,7 +35,7 @@ export const PS2Language = LRLanguage.define({
   }),
   languageData: {
     commentTokens: {line: "//"},
-    indentOnInput: /^\s*([\}\]\)]|ELSE|ENDIF|NEXT|ENDFUNCTION|UNTIL|ENDWHILE|ENDPROCEDURE|ENDCASE)$/
+    indentOnInput: /^\s*([\}\]\)]|ELSE|ENDIF|NEXT|ENDFUNCTION|UNTIL|ENDWHILE|ENDPROCEDURE|ENDCASE|ENDTYPE)$/
   }
 })
 
@@ -81,6 +81,8 @@ export function PS2() {
             { label: "CASE",         type: "keyword"  },
             { label: "ENDCASE",      type: "keyword"  },
             { label: "OTHERWISE",    type: "keyword"  },
+            { label: "TYPE",         type: "keyword"  },
+            { label: "ENDTYPE",      type: "keyword"  },
             { label: "INTEGER",      type: "type"     },
             { label: "REAL",         type: "type"     },
             { label: "CHAR",         type: "type"     },

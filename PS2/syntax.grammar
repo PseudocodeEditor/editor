@@ -22,8 +22,8 @@ expression {
   
   Identifier { $[a-zA-Z_0-9]+ }
 
-  ApplicationStart { "IF" | "WHILE" | "REPEAT" | "TO" | "FUNCTION" | "PROCEDURE" | "CASE" }
-  ApplicationEnd { "ENDIF" | "ENDWHILE" | "UNTIL" | "NEXT" | "ENDFUNCTION" | "ENDPROCEDURE" | "ENDCASE" }
+  ApplicationStart { "IF" | "WHILE" | "REPEAT" | "TO" | "FUNCTION" | "PROCEDURE" | "CASE" | "TYPE" }
+  ApplicationEnd { "ENDIF" | "ENDWHILE" | "UNTIL" | "NEXT" | "ENDFUNCTION" | "ENDPROCEDURE" | "ENDCASE" | "ENDTYPE" }
 
   String { '"' (!["\\] | "\\" _)* '"' }
 
