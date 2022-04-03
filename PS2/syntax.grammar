@@ -4,6 +4,7 @@
 
 expression {
   Identifier |
+  Char |
   String |
   Number |
   Boolean |
@@ -24,6 +25,8 @@ expression {
 
   ApplicationStart { "IF" | "WHILE" | "REPEAT" | "TO" | "FUNCTION" | "PROCEDURE" | "CASE" | "TYPE" }
   ApplicationEnd { "ENDIF" | "ENDWHILE" | "UNTIL" | "NEXT" | "ENDFUNCTION" | "ENDPROCEDURE" | "ENDCASE" | "ENDTYPE" }
+
+  Char { "'" (!['\\] | "\\" _) "'" }
 
   String { '"' (!["\\] | "\\" _)* '"' }
 
