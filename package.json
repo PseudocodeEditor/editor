@@ -14,6 +14,7 @@
     "@codemirror/history": "^0.19.2",
     "@codemirror/lang-javascript": "^0.19.7",
     "@codemirror/language": "^0.19.10",
+    "@codemirror/lint": "^0.19.6",
     "@codemirror/search": "^0.19.9",
     "@codemirror/view": "^0.19.47",
     "@lezer/generator": "^0.15.4",

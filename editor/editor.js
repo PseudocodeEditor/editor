@@ -4,8 +4,10 @@ import {indentUnit} from "@codemirror/language"
 import {EditorView, keymap, highlightActiveLine} from "@codemirror/view"
 import {highlightActiveLineGutter} from "@codemirror/gutter"
 import {EditorState, basicSetup} from "@codemirror/basic-setup"
+import {linter} from "@codemirror/lint"
 
 import {PS2} from "../PS2/index.ts"
+import {PS2Lint} from "../PS2/linter.js"
 import {psLight, psDark, psLightHighlight, psDarkHighlight} from "./styling.js"
 
 const themeExtensions = {
@@ -67,7 +69,8 @@ CLOSEFILE "FileB.txt"
     highlightActiveLine(),
     psDark,
     psDarkHighlight,
-    PS2()
+    PS2(),
+    linter(PS2Lint)
   ]
 })
 
