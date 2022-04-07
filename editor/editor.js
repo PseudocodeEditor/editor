@@ -1,20 +1,67 @@
 import {defaultKeymap, indentLess, indentMore} from "@codemirror/commands"
 import {acceptCompletion} from "@codemirror/autocomplete"
 import {indentUnit} from "@codemirror/language"
+import {StateEffect} from "@codemirror/state"
 import {EditorView, keymap, highlightActiveLine} from "@codemirror/view"
 import {highlightActiveLineGutter} from "@codemirror/gutter"
 import {EditorState, basicSetup} from "@codemirror/basic-setup"
 
 import {PS2} from "../PS2/index.ts"
-import {psLight, psDark, psLightHighlight, psDarkHighlight} from "./styling.js"
+import {psLight, psDark, psHighContrast, psLightHighlight, psDarkHighlight, psHighContrastHighlight} from "./styling.js"
 
-const themeExtensions = {
-  light: [psLight, psLightHighlight],
-  dark: [psDark, psDarkHighlight]
-}
+const extensions = [
+  basicSetup,
+  keymap.of([
+    ...defaultKeymap,
+    {
+      key: "Tab",
+      preventDefault: true,
+      run: acceptCompletion,
+    },
+    {
+      key: "Tab",
+      preventDefault: true,
+      run: indentMore,
+    },
+    {
+      key: "Shift-Tab",
+      preventDefault: true,
+      run: indentLess,
+    },
+    {
+      key: "Mod-s",
+      preventDefault: true,
+      run: () => { document.querySelector("#download-button").click() }
+    },      
+    {
+      key: "Mod-o",
+      preventDefault: true,
+      run: () => { document.querySelector("#upload").click() }
+    }
+  ]),
+  indentUnit.of("	"),
+  highlightActiveLineGutter(),
+  highlightActiveLine(),
+  PS2()
+]
 
-//const [theme, setTheme] = useState('dark');
-//const container = useRef(null);
+const lightThemeExtensions = [
+ ...extensions,
+  psLight,
+  psLightHighlight
+]
+
+const darkThemeExtensions = [
+ ...extensions,
+  psDark,
+  psDarkHighlight
+]
+
+const highContrastThemeExtensions = [
+ ...extensions,
+  psHighContrast,
+  psHighContrastHighlight,
+]
 
 const state = EditorState.create({
   doc: `// File handling example
@@ -32,49 +79,33 @@ ENDWHILE
 CLOSEFILE "FileA.txt"
 CLOSEFILE "FileB.txt"
 `,
-  extensions: [
-    basicSetup,
-    keymap.of([
-      ...defaultKeymap,
-      {
-        key: "Tab",
-        preventDefault: true,
-        run: acceptCompletion,
-      },
-      {
-        key: "Tab",
-        preventDefault: true,
-        run: indentMore,
-      },
-      {
-        key: "Shift-Tab",
-        preventDefault: true,
-        run: indentLess,
-      },
-      {
-        key: "Mod-s",
-        preventDefault: true,
-        run: () => { document.querySelector("#download-button").click() }
-      },      
-      {
-        key: "Mod-o",
-        preventDefault: true,
-        run: () => { document.querySelector("#upload").click() }
-      }
-    ]),
-    indentUnit.of("	"),
-    highlightActiveLineGutter(),
-    highlightActiveLine(),
-    psDark,
-    psDarkHighlight,
-    PS2()
-  ]
+  extensions: darkThemeExtensions
 })
 
 const editor = new EditorView({
   state: state,
-  //...themeExtensions[theme],
   parent: document.querySelector("#editor")
+})
+
+document.querySelector("#light-theme").addEventListener("click", () => {
+  editor.dispatch({
+      effects: StateEffect.reconfigure.of(lightThemeExtensions)
+  })
+  document.body.className = "light"
+})
+
+document.querySelector("#dark-theme").addEventListener("click", () => {
+  editor.dispatch({
+      effects: StateEffect.reconfigure.of(darkThemeExtensions)
+  })
+  document.body.className = "dark"
+})
+
+document.querySelector("#highContrast-theme").addEventListener("click", () => {
+  editor.dispatch({
+      effects: StateEffect.reconfigure.of(highContrastThemeExtensions)
+  })
+  document.body.className = "highContrast"
 })
 
 document.querySelector("#upload").addEventListener('change', (event) => {
