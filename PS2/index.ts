@@ -7,7 +7,7 @@ export const PS2Language = LRLanguage.define({
   parser: parser.configure({
     props: [
       indentNodeProp.add({
-        Application: cx => cx.baseIndent + (/^\s*(ELSE|ENDIF|ENDWHILE|UNTIL|NEXT|ENDFUNCTION|ENDPROCEDURE|ENDACSE|ENDTYPE)\b/.test(cx.textAfter) ? 0 : cx.unit)
+        Application: cx => cx.baseIndent + (/^\s*(ELSE|ENDIF|ENDWHILE|UNTIL|NEXT|ENDFUNCTION|ENDPROCEDURE|ENDCASE|ENDTYPE)\b/.test(cx.textAfter) ? 0 : cx.unit)
       }),        
       foldNodeProp.add({
         Application: foldInside
