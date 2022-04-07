@@ -7,7 +7,8 @@
 // DECLARE var : TYPE
 const declare_identifiers = [
   /^[ \t]*DECLARE.*$/gm,
-  /^[ \t]*[^"'\n]*:\s*\w*.*$/gm
+  /^[ \t]*[^"'\n]*:\s*(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE|ARRAY)$/gm,
+  /^[ \t]*(\w+[ \t]+){2,}:\s*\w*.*$/gm
 ]
 
 // IF expression THEN
