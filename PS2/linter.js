@@ -7,7 +7,7 @@
 // DECLARE var : TYPE
 const declare_identifiers = [
   /^[ \t]*DECLARE.*$/gm,
-  /^[ \t]*[^"'\n]*:\s*(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE|ARRAY)$/gm,
+  /^[ \t]*[^"'\n]*:\s*(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE|ARRAY).*$/gm,
   /^[ \t]*(\w+[ \t]+){2,}:\s*\w*.*$/gm
 ]
 
@@ -17,12 +17,14 @@ const if_identifiers = [
   /^[ \t]*[^"'\n]*THEN/gm
 ]
 
+// 
+
 
 // statement type => [regex[], regex]
 // [0]: Regexes that find possble lines to be validated
 // [1]: Regex that validates whether the found lines are correct
 const checks = {
-  declare: [declare_identifiers, /^[ \t]*DECLARE\s+[a-zA-Z_0-9]+\s*:\s*(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE|ARRAY)[ \t]*$/],
+  declare: [declare_identifiers, /^[ \t]*DECLARE\s+[a-zA-Z_0-9]+\s*:\s*(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE|(ARRAY\s*\[\s*\d\s*:\s*\d(\s*,\s*\d\s*:\s*\d)?\s*\]\s*OF\s*(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE)))[ \t]*$/],
   if:      [if_identifiers,      /^[ \t]*IF(\s+|(\s*\(\s*)+)(NOT\s+)?(\(\s*)?([a-zA-Z_0-9.\[\]\(\)]+|'([^'\\]|\\.)?'|"([^"\\]|\\.)*")(\s*\)\s*)?(\s*(\+|-|\*|\/|=|<>|>|<|>=|<=|\s+AND\s+|\s+OR\s+)(\s*(\(|\)))?\s*(NOT(\s*\(\s*|\s+)?)?([a-zA-Z_0-9.\[\]\(\)]+|'([^'\\]|\\.)?'|"([^"\\]|\\.)*"))*((\s*\)\s*)?|\s+)THEN[ \t]*$/]
 }
 
