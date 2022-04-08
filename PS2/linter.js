@@ -13,14 +13,14 @@ const declare_identifiers = [
 
 // IF expression THEN
 const if_identifiers = [
-  /^[ \t]*IF.*/gm,
-  /^[ \t]*[^"'\n]*THEN/gm
+  /^[ \t]*IF\s+.*/gm,
+  /^[ \t]*[^"'\n]*\s+THEN/gm
 ]
 
 // CASE OF var
 const case_identifiers = [
   /^[ \t]*CASE\s+.*/gm,
-  /^[ \t]*[\w\s]*OF.*/gm
+  /^[ \t]*[\w\s]*\s+OF\s+.*/gm
 ]
 
 
