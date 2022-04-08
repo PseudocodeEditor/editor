@@ -17,7 +17,11 @@ const if_identifiers = [
   /^[ \t]*[^"'\n]*THEN/gm
 ]
 
-// 
+// CASE OF var
+const case_identifiers = [
+  /^[ \t]*CASE\s+.*/gm,
+  /^[ \t]*[\w\s]*OF.*/gm
+]
 
 
 // statement type => [regex[], regex]
@@ -25,7 +29,8 @@ const if_identifiers = [
 // [1]: Regex that validates whether the found lines are correct
 const checks = {
   declare: [declare_identifiers, /^[ \t]*DECLARE\s+[a-zA-Z_0-9]+\s*:\s*(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE|(ARRAY\s*\[\s*\d\s*:\s*\d(\s*,\s*\d\s*:\s*\d)?\s*\]\s*OF\s*(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE)))[ \t]*$/],
-  if:      [if_identifiers,      /^[ \t]*IF(\s+|(\s*\(\s*)+)(NOT\s+)?(\(\s*)?([a-zA-Z_0-9.\[\]\(\)]+|'([^'\\]|\\.)?'|"([^"\\]|\\.)*")(\s*\)\s*)?(\s*(\+|-|\*|\/|=|<>|>|<|>=|<=|\s+AND\s+|\s+OR\s+)(\s*(\(|\)))?\s*(NOT(\s*\(\s*|\s+)?)?([a-zA-Z_0-9.\[\]\(\)]+|'([^'\\]|\\.)?'|"([^"\\]|\\.)*"))*((\s*\)\s*)?|\s+)THEN[ \t]*$/]
+  if: [if_identifiers, /^[ \t]*IF(\s+|(\s*\(\s*)+)(NOT\s+)?(\(\s*)?([a-zA-Z_0-9.\[\]\(\)]+|'([^'\\]|\\.)?'|"([^"\\]|\\.)*")(\s*\)\s*)?(\s*(\+|-|\*|\/|=|<>|>|<|>=|<=|\s+AND\s+|\s+OR\s+)(\s*(\(|\)))?\s*(NOT(\s*\(\s*|\s+)?)?([a-zA-Z_0-9.\[\]\(\)]+|'([^'\\]|\\.)?'|"([^"\\]|\\.)*"))*((\s*\)\s*)?|\s+)THEN[ \t]*$/],
+  case: [case_identifiers, /^[ \t]*CASE\s+OF\s+[a-zA-Z_0-9.\[\]\(\)]+[ \t]*$/]
 }
 
 function matchBrackets(s) {
