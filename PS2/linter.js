@@ -11,6 +11,11 @@ const declare_identifiers = [
   /^[ \t]*(\w+[ \t]+){2,}:\s*\w*.*$/gm
 ]
 
+// var <- expression
+const assignment_identifiers = [
+  /^[ \t]*[^"'\n]*<-.*/gm
+]
+
 // IF expression THEN
 const if_identifiers = [
   /^[ \t]*IF\s+.*/gm,
@@ -29,6 +34,7 @@ const case_identifiers = [
 // [1]: Regex that validates whether the found lines are correct
 const checks = {
   declare: [declare_identifiers, /^[ \t]*DECLARE\s+[a-zA-Z_0-9]+\s*:\s*(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE|(ARRAY\s*\[\s*\d\s*:\s*\d(\s*,\s*\d\s*:\s*\d)?\s*\]\s*OF\s*(INTEGER|REAL|CHAR|STRING|BOOLEAN|DATE)))[ \t]*$/],
+  assignment: [assignment_identifiers, /^[ \t]*[a-zA-Z_0-9.\[\]]+\s*<-(\s+|(\s*\(\s*)+)(NOT\s+)?(\(\s*)?([a-zA-Z_0-9.\[\]\(\)]+|'([^'\\]|\\.)?'|"([^"\\]|\\.)*")(\s*\)\s*)?(\s*(\+|-|\*|\/|=|<>|>|<|>=|<=|\s+AND\s+|\s+OR\s+)(\s*(\(|\)))?\s*(NOT(\s*\(\s*|\s+)?)?([a-zA-Z_0-9.\[\]\(\)]+|'([^'\\]|\\.)?'|"([^"\\]|\\.)*"))*((\s*\)\s*)?|\s+)$/],
   if: [if_identifiers, /^[ \t]*IF(\s+|(\s*\(\s*)+)(NOT\s+)?(\(\s*)?([a-zA-Z_0-9.\[\]\(\)]+|'([^'\\]|\\.)?'|"([^"\\]|\\.)*")(\s*\)\s*)?(\s*(\+|-|\*|\/|=|<>|>|<|>=|<=|\s+AND\s+|\s+OR\s+)(\s*(\(|\)))?\s*(NOT(\s*\(\s*|\s+)?)?([a-zA-Z_0-9.\[\]\(\)]+|'([^'\\]|\\.)?'|"([^"\\]|\\.)*"))*((\s*\)\s*)?|\s+)THEN[ \t]*$/],
   case: [case_identifiers, /^[ \t]*CASE\s+OF\s+[a-zA-Z_0-9.\[\]\(\)]+[ \t]*$/]
 }
@@ -61,7 +67,7 @@ export function PS2Lint(view) {
 
           const line = m[0]
 
-          if (!line.match(validator) || (type === "if" && !matchBrackets(line))) {
+          if (!line.match(validator) || (["if", "assignment"].includes(type) && !matchBrackets(line))) {
             diagnostics.push({
               from: m.index,
               to: m.index + line.length,
