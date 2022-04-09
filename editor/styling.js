@@ -3,7 +3,7 @@ import {tags, HighlightStyle} from "@codemirror/highlight"
 
 const psLight = EditorView.theme({
   "&": {
-      color: "black",
+      color: "#292929",
       backgroundColor: "#FFFFFF",
   },
   ".cm-scroller": {
@@ -25,14 +25,14 @@ const psLight = EditorView.theme({
   },
   ".cm-gutters": {
       backgroundColor: "#FFFFFF",
-      color: "#aeaeae",
+      color: "#A4A4A4",
       border: "none"
   },
   ".cm-activeLine": {
-      backgroundColor: "#E8F2FF",
+      backgroundColor: "white",
   },
   ".cm-activeLineGutter": {
-    backgroundColor: "#E8F2FF!important",
+    backgroundColor: "white",
     color: "black",
   },
   ".cm-foldPlaceholder": {
@@ -152,43 +152,43 @@ const psHighContrast = EditorView.theme({
 const psLightHighlight = HighlightStyle.define([
   {
       tag: tags.name,
-      color: "black"
+      color: "#292929"
   },
   {
       tag: tags.bool,
-      color: "#0F68A0"
+      color: "#3B8589"
   },
   {
       tag: tags.typeName,
-      color: "#3900A0"
+      color: "#6042B9"
   },
   {
       tag: tags.keyword,
-      color: "#9B2393"
+      color: "#AD3DA3"
   },
   {
       tag: tags.definitionKeyword,
-      color: "#9B2393"
+      color: "#AD3DA3"
   },
     {
       tag: tags.moduleKeyword,
-      color: "#6C36A9"
+      color: "#6042B9"
   },
    {
       tag: tags.modifier,
-      color: "#6C36A9"
+      color: "#6042B9"
   },
   {
       tag: tags.operator,
-      color: "#9B2393"
+      color: "#AD3DA3"
   },
   {
       tag: tags.string,
-      color: "#C41A16"
+      color: "#D51118"
   },
   {
       tag: tags.number,
-      color: "#1C00CF"
+      color: "#2222CB"
   },
   {
       tag: tags.lineComment,
