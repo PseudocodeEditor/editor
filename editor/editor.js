@@ -11,6 +11,7 @@ import {psLight, psDark, psHighContrast, psLightHighlight, psDarkHighlight, psHi
 
 const extensions = [
   basicSetup,
+  EditorView.lineWrapping,
   keymap.of([
     ...defaultKeymap,
     {
