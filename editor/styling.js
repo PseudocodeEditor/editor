@@ -4,11 +4,14 @@ import {tags, HighlightStyle} from "@codemirror/highlight"
 const psLight = EditorView.theme({
   "&": {
       color: "#292929",
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "transparent",
+  },
+  "cm-editor": {
+    paddingTop: "0.4rem",
   },
   ".cm-scroller": {
       fontFamily: "'JetBrains Mono', monospace !important",
-      lineHeight: "1.6",
+      lineHeight: "1.9",
       fontSize: "13px"
   },
   ".cm-tooltip.cm-tooltip-autocomplete": {
@@ -24,15 +27,20 @@ const psLight = EditorView.theme({
       backgroundColor: "#A4CDFF"
   },
   ".cm-gutters": {
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "transparent",
       color: "#A4A4A4",
-      border: "none"
+      border: "none",
+      paddingLeft: "0.8rem",
+      marginBottom: "35vh",
+  },
+  ".cm-gutter": {
+    minWidth: "3ch",
   },
   ".cm-activeLine": {
-      backgroundColor: "white",
+      backgroundColor: "transparent",
   },
   ".cm-activeLineGutter": {
-    backgroundColor: "white",
+    backgroundColor: "transparent",
     color: "black",
   },
   ".cm-foldPlaceholder": {
@@ -52,11 +60,11 @@ const psLight = EditorView.theme({
 const psDark = EditorView.theme({
   "&": {
       color: "white",
-      backgroundColor: "#1f1f24",
+      backgroundColor: "transparent",
   },
   ".cm-scroller": {
       fontFamily: "'JetBrains Mono', monospace !important",
-      lineHeight: "1.6",
+      lineHeight: "1.9",
       fontSize: "13px"
   },
   ".cm-tooltip.cm-tooltip-autocomplete": {
@@ -72,65 +80,15 @@ const psDark = EditorView.theme({
       backgroundColor: "#515B70"
   },
   ".cm-gutters": {
-      backgroundColor: "#1f1f24",
+      backgroundColor: "transparent",
       color: "#575757",
       border: "none"
   },
   ".cm-activeLine": {
-      backgroundColor: "#23252B",
+      backgroundColor: "transparent",
   },
   ".cm-activeLineGutter": {
-    backgroundColor: "#23252B!important",
-    color: "white",
-  },
-  ".cm-foldPlaceholder": {
-    backgroundColor: "#3F3F41",
-    color: "#9F9FA0",
-    border: "none",
-    borderRadius: "5px",
-    padding: "0 6px",
-    margin: "0 3.5px",
-    fontFamily: "Hiragino Sans",
-    fontWeight: "bold",
-    fontSize: "14px",
-    lineHeight: "10px",
-  },
-}, {
-    dark: true
-});
-
-const psHighContrast = EditorView.theme({
-  "&": {
-      color: "white",
-      backgroundColor: "#18171B",
-  },
-  ".cm-scroller": {
-      fontFamily: "'FantasqueSansMonoRegular', monospace !important",
-      lineHeight: "1.65",
-      fontSize: "14px"
-  },
-  ".cm-tooltip.cm-tooltip-autocomplete": {
-      "& > ul": {
-          fontFamily: "'FantasqueSansMonoRegular', monospace !important",
-          fontSize: "13px"
-      }
-  },
-  "&.cm-focused .cm-cursor": {
-      borderLeftColor: "white"
-  },
-  "&.cm-focused .cm-selectionBackground, ::selection": {
-      backgroundColor: "#343C4B"
-  },
-  ".cm-gutters": {
-      backgroundColor: "#18171B",
-      color: "#575757",
-      border: "none"
-  },
-  ".cm-activeLine": {
-      backgroundColor: "#23252B",
-  },
-  ".cm-activeLineGutter": {
-    backgroundColor: "#23252B!important",
+    backgroundColor: "transparent",
     color: "white",
   },
   ".cm-foldPlaceholder": {
@@ -170,11 +128,15 @@ const psLightHighlight = HighlightStyle.define([
       tag: tags.definitionKeyword,
       color: "#AD3DA3"
   },
-    {
+  {
       tag: tags.moduleKeyword,
       color: "#6042B9"
   },
-   {
+  {
+    tag: tags.labelName,
+    color: "#e05ffc"
+  },
+  {
       tag: tags.modifier,
       color: "#6042B9"
   },
@@ -225,7 +187,11 @@ const psDarkHighlight = HighlightStyle.define([
       tag: tags.moduleKeyword,
       color: "#b281eb"
   },
-   {
+  {
+      tag: tags.labelName,
+      color: "#e367ef"
+  },
+  {
       tag: tags.modifier,
       color: "#b281eb"
   },
@@ -251,55 +217,4 @@ const psDarkHighlight = HighlightStyle.define([
   },
 ])
 
-const psHighContrastHighlight = HighlightStyle.define([
-  {
-      tag: tags.name,
-      color: "white"
-  },
-  {
-      tag: tags.bool,
-      color: "#5DD8FF"
-  },
-  {
-      tag: tags.typeName,
-      color: "#DEC1FF"
-  },
-  {
-      tag: tags.keyword,
-      color: "#FC6BAA"
-  },
-  {
-      tag: tags.definitionKeyword,
-      color: "#FC6BAA"
-  },
-  {
-      tag: tags.moduleKeyword,
-      color: "#C08AFF"
-  },
-   {
-      tag: tags.modifier,
-      color: "#C08AFF"
-  },
-  {
-      tag: tags.operator,
-      color: "#FC6BAA"
-  },
-  {
-      tag: tags.string,
-      color: "#FC7467"
-  },
-  {
-      tag: tags.number,
-      color: "#D0BC56"
-  },
-  {
-      tag: tags.lineComment,
-      color: "#7CB554"
-  },
-  {
-      tag: tags.comment,
-      color: "#7CB554"
-  },
-])
-
-export { psLight, psDark, psLightHighlight, psDarkHighlight, psHighContrast, psHighContrastHighlight }
+export { psLight, psDark, psLightHighlight, psDarkHighlight }

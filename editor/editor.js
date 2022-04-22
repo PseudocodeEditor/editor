@@ -7,7 +7,7 @@ import {highlightActiveLineGutter} from "@codemirror/gutter"
 import {EditorState, basicSetup} from "@codemirror/basic-setup"
 
 import {PS2} from "../PS2/index.ts"
-import {psLight, psDark, psHighContrast, psLightHighlight, psDarkHighlight, psHighContrastHighlight} from "./styling.js"
+import {psLight, psDark, psLightHighlight, psDarkHighlight} from "./styling.js"
 
 const extensions = [
   basicSetup,
@@ -58,11 +58,25 @@ const darkThemeExtensions = [
   psDarkHighlight
 ]
 
-const highContrastThemeExtensions = [
- ...extensions,
-  psHighContrast,
-  psHighContrastHighlight,
-]
+function getCookie(name) {
+    var cookieArr = document.cookie.split(";");
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        if(name == cookiePair[0].trim()) {
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    return null;
+}
+
+function checkTheme() {
+  var theme = getCookie("light-mode");
+  if (theme == "true") {
+    return lightThemeExtensions
+  }else {
+    return darkThemeExtensions
+    }
+  }
 
 const state = EditorState.create({
   doc: `// File handling example
@@ -80,34 +94,28 @@ ENDWHILE
 CLOSEFILE "FileA.txt"
 CLOSEFILE "FileB.txt"
 `,
-  extensions: darkThemeExtensions
+  extensions: checkTheme()
 })
 
 const editor = new EditorView({
   state: state,
   parent: document.querySelector("#editor")
-})
+});
 
-document.querySelector("#light-theme").addEventListener("click", () => {
+document.querySelector("#light-selector").addEventListener("click", () => {
   editor.dispatch({
       effects: StateEffect.reconfigure.of(lightThemeExtensions)
   })
   document.body.className = "light"
 })
 
-document.querySelector("#dark-theme").addEventListener("click", () => {
+document.querySelector("#dark-selector").addEventListener("click", () => {
   editor.dispatch({
       effects: StateEffect.reconfigure.of(darkThemeExtensions)
   })
   document.body.className = "dark"
 })
 
-document.querySelector("#highContrast-theme").addEventListener("click", () => {
-  editor.dispatch({
-      effects: StateEffect.reconfigure.of(highContrastThemeExtensions)
-  })
-  document.body.className = "highContrast"
-})
 
 document.querySelector("#upload").addEventListener('change', (event) => {
 	const input = event.target

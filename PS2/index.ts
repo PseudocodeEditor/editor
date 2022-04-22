@@ -1,13 +1,13 @@
 import {parser} from "./syntax.grammar"
 import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp, foldInside, syntaxTree} from "@codemirror/language"
 import {styleTags, tags as t} from "@codemirror/highlight"
-import {completeFromList, CompletionContext} from "@codemirror/autocomplete";
+import {CompletionContext} from "@codemirror/autocomplete";
 
 export const PS2Language = LRLanguage.define({
   parser: parser.configure({
     props: [
       indentNodeProp.add({
-        Application: cx => cx.baseIndent + (/^\s*(ELSE|ENDIF|ENDWHILE|UNTIL|NEXT|ENDFUNCTION|ENDPROCEDURE|ENDACSE|ENDTYPE)\b/.test(cx.textAfter) ? 0 : cx.unit)
+        Application: cx => cx.baseIndent + (/^\s*(ELSE|ENDIF|ENDWHILE|UNTIL|NEXT|ENDFUNCTION|ENDPROCEDURE|ENDACSE|ENDTYPE|ENDCLASS)\b/.test(cx.textAfter) ? 0 : cx.unit)
       }),        
       foldNodeProp.add({
         Application: foldInside
@@ -18,6 +18,7 @@ export const PS2Language = LRLanguage.define({
         Boolean: t.bool,
         Type: t.typeName,
         Keyword: t.keyword,
+        ClassLabel: t.labelName,
         ModuleKeyword: t.moduleKeyword,
         FileKeyword: t.modifier,
         ApplicationStart: t.keyword,
@@ -36,7 +37,7 @@ export const PS2Language = LRLanguage.define({
   }),
   languageData: {
     commentTokens: {line: "//"},
-    indentOnInput: /^\s*([\}\]\)]|ELSE|ENDIF|NEXT|ENDFUNCTION|UNTIL|ENDWHILE|ENDPROCEDURE|ENDCASE|ENDTYPE)$/
+    indentOnInput: /^\s*([\}\]\)]|ELSE|ENDIF|NEXT|ENDFUNCTION|UNTIL|ENDWHILE|ENDPROCEDURE|ENDCASE|ENDTYPE|ENDCLASS)$/
   }
 })
 
@@ -84,6 +85,8 @@ export function PS2() {
             { label: "OTHERWISE",    type: "keyword"  },
             { label: "TYPE",         type: "keyword"  },
             { label: "ENDTYPE",      type: "keyword"  },
+            { label: "CLASS",        type: "keyword"  },
+            { label: "ENDCLASS",     type: "keyword"  },
             { label: "INTEGER",      type: "type"     },
             { label: "REAL",         type: "type"     },
             { label: "CHAR",         type: "type"     },
@@ -128,8 +131,10 @@ export function PS2() {
             { label: "SEEK",         type: "function" },
             { label: "GETRECORD",    type: "function" },
             { label: "PUTRECORD",    type: "function" },
-            { label: "BYREF",        type: "keyword" },
-            { label: "BYVAL",        type: "keyword" },
+            { label: "BYREF",         type: "keyword" },
+            { label: "BYVAL",         type: "keyword" },
+            { label: "PUBLIC",        type: "keyword" },
+            { label: "PRIVATE",       type: "keyword" },
           ]
           
           let identifiers: Array<string> = []
