@@ -1,6 +1,6 @@
-import {parser} from "./syntax.grammar"
-import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp, foldInside, syntaxTree} from "@codemirror/language"
-import {styleTags, tags as t} from "@codemirror/highlight"
+import {parser} from "./syntax.grammar";
+import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp, foldInside, syntaxTree} from "@codemirror/language";
+import {styleTags, tags as t} from "@codemirror/highlight";
 import {CompletionContext} from "@codemirror/autocomplete";
 
 export const PS2Language = LRLanguage.define({
@@ -39,18 +39,18 @@ export const PS2Language = LRLanguage.define({
     commentTokens: {line: "//"},
     indentOnInput: /^\s*([\}\]\)]|ELSE|ENDIF|NEXT|ENDFUNCTION|UNTIL|ENDWHILE|ENDPROCEDURE|ENDCASE|ENDTYPE|ENDCLASS)$/
   }
-})
+});
 
 export function PS2() {
   return new LanguageSupport(
     PS2Language,
     PS2Language.data.of({
       autocomplete: (context: CompletionContext) => {        
-        const tree = syntaxTree(context.state)
-        const word = context.matchBefore(/\w*/)!
+        const tree = syntaxTree(context.state);
+        const word = context.matchBefore(/\w*/)!;
 
         if (word.from === word.to && !context.explicit) {
-          return null
+          return null;
         }
         
         if (tree.cursor(context.pos, -1).name === "Identifier") { 
@@ -58,6 +58,7 @@ export function PS2() {
             { label: "OR",           type: "keyword"  },
             { label: "AND",          type: "keyword"  },
             { label: "NOT",          type: "keyword"  },
+            { label: "REPEAT",       type: "keyword"  },
             { label: "UNTIL",        type: "keyword"  },
             { label: "IF",           type: "keyword"  },
             { label: "THEN",         type: "keyword"  },
@@ -93,6 +94,7 @@ export function PS2() {
             { label: "STRING",       type: "type"     },
             { label: "BOOLEAN",      type: "type"     },
             { label: "DATE",         type: "type"     },
+            { label: "CURRENCY",     type: "type"     },
             { label: "TRUE",         type: "keyword"  },
             { label: "FALSE",        type: "keyword"  },
             { label: "CONSTANT",     type: "keyword"  },
@@ -135,20 +137,21 @@ export function PS2() {
             { label: "BYVAL",         type: "keyword" },
             { label: "PUBLIC",        type: "keyword" },
             { label: "PRIVATE",       type: "keyword" },
-          ]
+            { label: "INHERITS",       type: "keyword" },
+          ];
           
-          let identifiers: Array<string> = []
+          let identifiers: Array<string> = [];
                
           for (let i = 0; i < tree.length; i++) {
-            const cursor = tree.cursor(i)
+            const cursor = tree.cursor(i);
             if (cursor.type.name === "Identifier") {
-              const identifier = context.state.sliceDoc(cursor.from, cursor.to)
+              const identifier = context.state.sliceDoc(cursor.from, cursor.to);
               if (word.text !== identifier && !identifiers.includes(identifier)) {
-                identifiers.push(identifier)
+                identifiers.push(identifier);
                 options.push({
                   label: identifier,
                   type: "variable"
-                })
+                });
               }
             }
           }
@@ -157,11 +160,11 @@ export function PS2() {
             from: word.from,
             options: options,
             span: /\w*$/
-          }
+          };
         }
 
-        return null
+        return null;
       }
     })
-  )
+  );
 }

@@ -53,7 +53,7 @@ $ npx rollup -c
 The repo is also already set up with a simple web server to serve the rolled up file. Simply run:
 
 ```bash
-$ node index.js
+$ node server.js
 ```
 
 Then all you need to do is have a webpage with the following in the body:
@@ -80,4 +80,3 @@ $ git push origin name-of-your-bugfix-or-feature
 * [Editor](https://github.com/PseudocodeEditor/Codemirror-6-editor/pulls)
 * [Website](https://github.com/PseudocodeEditor/website/pulls)
 * [Documentation](https://github.com/PseudocodeEditor/docs/pulls)
-

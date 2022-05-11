@@ -1,0 +1,5 @@
+DECLARE A : ARRAY [5:7, 9:13] OF INTEGER
+
+A[5,9] <- 99
+
+PRINT "A[5,9] =", A[5,9]

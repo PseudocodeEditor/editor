@@ -35,7 +35,7 @@ expression {
 
   Boolean { "TRUE" | "FALSE" }
 
-  Type { "INTEGER" | "REAL" | "CHAR" | "STRING" | "BOOLEAN" | "DATE" | "ARRAY" }
+  Type { "INTEGER" | "REAL" | "CHAR" | "STRING" | "BOOLEAN" | "DATE" | "ARRAY" | "CURRENCY" }
 
   Keyword { "OR" | "AND" | "REPEAT" | "UNTIL" | "IF" | "THEN" | "ELSE" | "ENDIF" | "WHILE" | "DO" | "ENDWHILE" | "OUTPUT" | "INPUT" | "DECLARE" | "PROCEDURE" | "ENDPROCEDURE" | "OF" | "CALL" | "FUNCTION" | "ENDFUNCTION" | "RETURNS" | "RETURN" | "FOR" | "TO" | "STEP" | "NEXT" | "CASE" | "ENDCASE" | "OTHERWISE" | "CONSTANT" | "BYREF" | "BYVAL" | "NOT" | "TYPE" | "ENDTYPE" | "CLASS" | "ENDCLASS" }
 
@@ -43,7 +43,7 @@ expression {
 
   FileKeyword { "OPENFILE" | "CLOSEFILE" | "EOF" | "FOR READ" | "FOR WRITE" | "FOR APPEND" | "WRITEFILE" | "READFILE" | "RANDOM" | "SEEK" | "GETRECORD" | "PUTRECORD" }
 
-  ClassLabel { "PUBLIC" | "PRIVATE" }
+  ClassLabel { "PUBLIC" | "PRIVATE" | "INHERITS" | "NEW" }
   
   Assignment { "<-" }
 

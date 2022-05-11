@@ -1,5 +1,5 @@
 node_modules/
 .replit
 replit.nix
-editor.bundle.js
-editor.bundle.d.ts
+dist/editor.bundle.js
+dist/editor.bundle.d.ts

@@ -1,88 +1,16 @@
-import {defaultKeymap, indentLess, indentMore} from "@codemirror/commands"
-import {acceptCompletion} from "@codemirror/autocomplete"
-import {indentUnit} from "@codemirror/language"
-import {StateEffect} from "@codemirror/state"
-import {EditorView, keymap, highlightActiveLine} from "@codemirror/view"
-import {highlightActiveLineGutter} from "@codemirror/gutter"
-import {EditorState, basicSetup} from "@codemirror/basic-setup"
+import {EditorView} from "@codemirror/view";
+import {EditorState} from "@codemirror/basic-setup";
 
-import {PS2} from "../PS2/index.ts"
-import {psLight, psDark, psLightHighlight, psDarkHighlight} from "./styling.js"
-
-const extensions = [
-  basicSetup,
-  EditorView.lineWrapping,
-  keymap.of([
-    ...defaultKeymap,
-    {
-      key: "Tab",
-      preventDefault: true,
-      run: acceptCompletion,
-    },
-    {
-      key: "Tab",
-      preventDefault: true,
-      run: indentMore,
-    },
-    {
-      key: "Shift-Tab",
-      preventDefault: true,
-      run: indentLess,
-    },
-    {
-      key: "Mod-s",
-      preventDefault: true,
-      run: () => { document.querySelector("#download-button").click() }
-    },      
-    {
-      key: "Mod-o",
-      preventDefault: true,
-      run: () => { document.querySelector("#upload").click() }
-    }
-  ]),
-  indentUnit.of("	"),
-  highlightActiveLineGutter(),
-  highlightActiveLine(),
-  PS2()
-]
-
-const lightThemeExtensions = [
- ...extensions,
-  psLight,
-  psLightHighlight
-]
-
-const darkThemeExtensions = [
- ...extensions,
-  psDark,
-  psDarkHighlight
-]
-
-function getCookie(name) {
-    var cookieArr = document.cookie.split(";");
-    for(var i = 0; i < cookieArr.length; i++) {
-        var cookiePair = cookieArr[i].split("=");
-        if(name == cookiePair[0].trim()) {
-            return decodeURIComponent(cookiePair[1]);
-        }
-    }
-    return null;
-}
-
-function checkTheme() {
-  var theme = getCookie("light-mode");
-  if (theme == "true") {
-    return lightThemeExtensions
-  }else {
-    return darkThemeExtensions
-    }
-  }
+import {getExtensions} from "./styles/themes.js";
 
 const state = EditorState.create({
   doc: `// File handling example
+
 DECLARE LineOfText : STRING
+
 OPENFILE "FileA.txt" FOR READ
 OPENFILE "FileB.txt" FOR WRITE
+
 WHILE NOT EOF("FileA.txt") DO
 	READFILE "FileA.txt", LineOfText
 	IF LineOfText = "" THEN
@@ -91,66 +19,37 @@ WHILE NOT EOF("FileA.txt") DO
 		WRITEFILE "FileB.txt", LineOfText
 	ENDIF
 ENDWHILE
+
 CLOSEFILE "FileA.txt"
 CLOSEFILE "FileB.txt"
 `,
-  extensions: checkTheme()
-})
+  extensions: getExtensions()
+});
 
-const editor = new EditorView({
+window.editor = new EditorView({
   state: state,
   parent: document.querySelector("#editor")
 });
 
-document.querySelector("#light-selector").addEventListener("click", () => {
-  editor.dispatch({
-      effects: StateEffect.reconfigure.of(lightThemeExtensions)
-  })
-  document.body.className = "light"
-})
+window.files = { [document.querySelector(".file-name").innerText]: editor.state.doc.toString() };
 
-document.querySelector("#dark-selector").addEventListener("click", () => {
-  editor.dispatch({
-      effects: StateEffect.reconfigure.of(darkThemeExtensions)
-  })
-  document.body.className = "dark"
-})
+import "./files/new.js";
+import "./files/open.js";
+import "./files/clear.js";
+import "./files/rename.js";
+import "./files/upload.js";
+import "./files/delete.js";
+import "./files/download.js";
 
+import "./styles/themes.js";
+import "./styles/styling.js";
 
-document.querySelector("#upload").addEventListener('change', (event) => {
-	const input = event.target
-  if ('files' in input && input.files.length > 0) {
-	  readFileContent(input.files[0])
-      .then(content => {
-  	    const update = editor.state.update({changes: {from: 0, to: editor.state.doc.length, insert: content}})
-        editor.update([update])
-      }).catch(error => console.log(error))
-  }
-})
+import "./project/rename.js";
+import "./project/upload.js";
+import "./project/download.js";
 
-function readFileContent(file) {
-	const reader = new FileReader()
-  return new Promise((resolve, reject) => {
-    reader.onload = event => resolve(event.target.result)
-    reader.onerror = error => reject(error)
-    reader.readAsText(file)
-  })
-}
-
-document.querySelector("#download-button").addEventListener("click", () => {  
-  const file = new Blob([editor.state.doc.toString()], {type: "text"});
-  if (window.navigator.msSaveOrOpenBlob)
-    window.navigator.msSaveOrOpenBlob(file, "myProgram.psc");
-  else {
-    const a = document.createElement("a")
-    const url = URL.createObjectURL(file);
-    a.href = url;
-    a.download = "myProgram.psc";
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(function() {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);  
-    }, 0); 
-  }
-})
+import "./misc/welcome.js";
+import "./misc/sidebars.js";
+import "./misc/dropdowns.js";
+import "./misc/lineNumbers.js";
+import "./misc/codeClipper.js";
