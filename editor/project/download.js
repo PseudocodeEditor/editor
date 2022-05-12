@@ -1,4 +1,4 @@
-document.querySelector("#download-project-button").addEventListener("click", () => {  
+export function bundleProject() {
   const recent = document.querySelector(".file-title.active");
   if (recent !== null) {
     files[recent.querySelector(".file-name").innerText] = editor.state.doc.toString();
@@ -6,12 +6,16 @@ document.querySelector("#download-project-button").addEventListener("click", () 
 
   const projName = document.querySelector("#project-title-input").value;
   
+  return JSON.stringify({
+    projectName: projName,
+    files: files
+  });
+}
+
+document.querySelector("#download-project-button").addEventListener("click", () => {  
   const fileName = projName + ".pscp";
   const file = new Blob(
-    [JSON.stringify({
-      projectName: projName,
-      files: files
-    })],
+    [bundleProject()],
     {type: "text"}
   );
   
