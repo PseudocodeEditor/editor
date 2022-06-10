@@ -23,9 +23,6 @@ function uploadFile(input) {
 
         files[fileName] = content;
         
-  	    const update = editor.state.update({changes: {from: 0, to: editor.state.doc.length, insert: content}});
-        editor.update([update]);
-        
         const newFile = document.createElement("div");
         newFile.classList.add("file-title");
       
@@ -35,7 +32,7 @@ function uploadFile(input) {
         newFile.appendChild(inputElem);
         document.querySelector("#file-tree").appendChild(newFile);
 
-        setFileName(inputElem, newFile, fileName);
+        setFileName(inputElem, newFile, fileName, true);
       }).catch(error => console.log(error));
   }
 }

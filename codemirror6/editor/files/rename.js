@@ -154,7 +154,7 @@ function sortFiles() {
 }
 
 
-export function setFileName(input, parent, oldName) {
+export function setFileName(input, parent, oldName, uploaded=false) {
   const newName = input.value;
 
   let content;
@@ -173,24 +173,17 @@ export function setFileName(input, parent, oldName) {
       alert("Filename must be alphnumeric + spaces + -_.");
       return;
     }
-    
-    const recent = document.querySelector(".file-title.active");
-    if (recent !== null) recent.classList.remove("active");
 
     if (oldName in files) {
-      content = editor.state.doc.toString();
+      content = uploaded ? files[oldName] : editor.state.doc.toString();
       delete files[oldName]
     } else {
       content = `OUTPUT "Hello World!"`;
     }
   }
-  
   files[newName] = content;
   
-  editor.update([editor.state.update({changes: {from: 0, to: editor.state.doc.length, insert: content}})]);
-  
-  const fileName = document.createElement("div");
-  
+  const fileName = document.createElement("div");  
   fileName.innerText = newName;
   
   fileName.classList.add("file-name");
@@ -202,14 +195,14 @@ export function setFileName(input, parent, oldName) {
   
   parent.appendChild(fileName);
   addDots(parent);
-  
-  parent.classList.add("active");
 
   parent.addEventListener("click", () => { openFile(parent) });
   
-  updateExtensions();
-
   sortFiles();
+  if (!uploaded) {
+    openFile(parent);
+    updateExtensions();
+  }
 }
 
 

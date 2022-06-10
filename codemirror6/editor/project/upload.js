@@ -1,3 +1,4 @@
+import {openFile} from "../files/open.js";
 import {setFileName} from "../files/rename.js";
 import {readFileContent} from "../files/upload.js";
 
@@ -15,6 +16,8 @@ export function openProject(content) {
     document.querySelector(".cm-gutters").style.opacity = "1";
     document.querySelector(".cm-content").setAttribute("contenteditable", true);
   }
+
+  let first;
   
   for (let fileName in files) {
     const c = files[fileName]
@@ -29,9 +32,13 @@ export function openProject(content) {
   
     newFile.appendChild(inputElem);
     document.querySelector("#file-tree").appendChild(newFile);
+
+    if (first === undefined) first = newFile;
   
-    setFileName(inputElem, newFile, fileName);
+    setFileName(inputElem, newFile, fileName, true);
   }
+
+  openFile(first);
 }
   
 document.querySelector("#upload-project").addEventListener("change", (event) => {

@@ -9,7 +9,7 @@ export function openFile(file) {
       if (recent !== null) {
         if (recent.querySelector("input") !== null) return; // still editing file name
         recent.classList.remove("active");
-        files[recent.querySelector(".file-name").innerText] = editor.state.doc.toString();        
+        files[recent.querySelector(".file-name").innerText] = editor.state.doc.toString();
       }
     }
     
