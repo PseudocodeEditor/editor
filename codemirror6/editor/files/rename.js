@@ -199,10 +199,7 @@ export function setFileName(input, parent, oldName, uploaded=false) {
   parent.addEventListener("click", () => { openFile(parent) });
   
   sortFiles();
-  if (!uploaded) {
-    openFile(parent);
-    updateExtensions();
-  }
+  if (!uploaded) openFile(parent);
 }
 
 
