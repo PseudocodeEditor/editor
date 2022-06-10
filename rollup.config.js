@@ -3,7 +3,7 @@ import {lezer} from "@lezer/generator/rollup";
 import {nodeResolve} from "@rollup/plugin-node-resolve";
 
 export default {
-  input: "editor/editor.js",
+  input: "codemirror6/editor/editor.js",
   output: {
     file: "dist/editor.bundle.js",
     format: "iife",

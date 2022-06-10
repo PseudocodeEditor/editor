@@ -13,7 +13,7 @@ export function bundleProject() {
 }
 
 document.querySelector("#download-project-button").addEventListener("click", () => {  
-  const fileName = projName + ".pscp";
+  const fileName = document.querySelector("#project-title-input").value + ".pscp";
   const file = new Blob(
     [bundleProject()],
     {type: "text"}

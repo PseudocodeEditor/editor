@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+.editor {
+  background-color: var(--editor-bg);
+}
+
+.ͼ1.cm-editor {
+  padding-top: 0.4rem;
+}
+
+.cm-gutter {
+  min-width: 3ch;
+}
+
+.ͼp .cm-gutters {
+  padding-left: 0.8rem;
+  margin-bottom: 35vh;
+}
+
+.ͼp .cm-scroller {
+  line-height: 1.9;
+  font-size: 13px;
+}
+
+.ͼ1.cm-editor.cm-focused {
+  outline: none;
+}
+
+.ͼp .cm-activeLine {
+  background-color: transparent !important;
+}
+
+.ͼp .cm-activeLineGutter {
+  background-color: transparent !important;
+}
+
+.data-grammarly-part {
+  display: none;
+}

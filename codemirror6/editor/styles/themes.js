@@ -2,7 +2,7 @@ import {PS2} from "../../PS2/index.ts";
 
 import {StateEffect} from "@codemirror/state";
 
-import {extensions} from "../extensions.js";
+import {extensions} from "../extensions/extensions.js";
 import {psLight, psDark, psLightHighlight, psDarkHighlight} from "./styling.js";
 
 import {toggleShow} from "../misc/show.js";

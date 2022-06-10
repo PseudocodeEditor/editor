@@ -1,22 +1,38 @@
-const http = require('http');
-const fileSystem = require('fs');
-const path = require('path');
+const path = require("path");
+const express = require("express");
 
-http.createServer(function(request, response) {
-  const filePath = path.join(__dirname, 'dist/editor.bundle.js');
-  const stat = fileSystem.statSync(filePath);
+const app = express();
+const PORT = 8080;
 
-  response.setHeader('Access-Control-Allow-Origin', '*');
-  response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-  response.setHeader('Access-Control-Max-Age', 2592000);
+app.get("/", (rqq, res) => {
+  res.sendFile(path.join(__dirname + "/server/index.html"))
+});
 
-  response.writeHead(200, {
-    'Content-Type': 'text/javascript',
-    'Content-Length': stat.size
-  });
+app.get("/editor.js", (req, res) => {
+  res.sendFile(path.join(__dirname + "/dist/editor.bundle.js"));
+});
 
-  const readStream = fileSystem.createReadStream(filePath);
+app.get("/css/editor.css", (req, res) => {
+  res.sendFile(path.join(__dirname + "/server/css/editor.css"));
+});
 
-  readStream.pipe(response);
-})
-.listen(2000);
+app.get("/css/style.css", (req, res) => {
+  res.sendFile(path.join(__dirname + "/server/css/style.css"));
+});
+
+app.get("/media/file.svg", (req, res) => {
+  res.sendFile(path.join(__dirname + "/server/media/file.svg"));
+});
+
+app.get("/media/psc.svg", (req, res) => {
+  res.sendFile(path.join(__dirname + "/server/media/psc.svg"));
+});
+
+app.get("/favicon.ico", (req, res) => {
+  res.sendFile(path.join(__dirname + "/server/media/favicon.ico"));
+});
+ 
+app.listen(PORT, err => {
+  if (err) console.log(err);
+  console.log("Server listening on PORT", PORT);
+});

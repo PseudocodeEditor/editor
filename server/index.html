@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Editor</title>
+  
+  <meta content="Editor" property="og:title" />
+  <meta content="Editor" property="twitter:title" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link href="/favicon.ico" rel="apple-touch-icon" />
+  
+  <link href="/css/style.css" rel="stylesheet" type="text/css" />
+  <link href="/css/editor.css" rel="stylesheet" type="text/css" />
+  <link href="/css/scrollbar.css" rel="stylesheet" type="text/css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body class="dark">  
+  <div id="popup-overlay" class="welcome-overlay wf-section">
+    <div class="welcome-inner">
+      <div class="welcome">
+        <h2 class="welcome-title">Welcome to<br/><span class="welcome-title-purple">Pseudonaja</span><span class="welcome-title-lite"> Lite</span></h2>
+        
+        <p class="smaller-device-text">You can now edit your pseudocode on the go with Pseudonaja Lite. For the full experience, please switch to a larger device.</p>
+        <div class="w-layout-grid welcome-features">
+          <div class="symbol-block"><img src="https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/6250d2d31490d18a7a3eac95_Play.svg" loading="lazy" alt="" class="symbol" /></div>
+          
+          <div class="feature-block">
+            <h4 class="feature-title">Run and Test Your Code</h4>
+            <p class="feature-description">Simply write your program in the editor and watch it run live in the console, just like real code.</p>
+          </div>
+          
+          <div class="symbol-block"><img src="https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/6250d2d31db31040ec084ac9_sparkles.svg" loading="lazy" alt="" class="symbol" /></div>
+         
+          <div class="feature-block">
+            <h4 class="feature-title">Editor-Rich Features</h4>
+            <p class="feature-description">Enjoy features like dynamic syntax highlighting, find and replace, auto-indentation and code folding, just like a real IDE.</p>
+          </div>
+          
+          <div class="symbol-block"><img src="https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/6250d2d3df719708fab17711_text-cursor.svg" loading="lazy" alt="" class="symbol" /></div>
+          
+          <div class="feature-block">
+            <h4 class="feature-title">Smart Suggestions</h4>
+            <p class="feature-description">Suggestions help you write flawless code with auto-complete and error highlighting, just like a real language.</p>
+          </div>
+        </div>
+        
+        <div class="welcome-button"><button class="continue-button">Continue</a></div>
+        
+        <h4 id="popup-dns" class="welcome-dns">Don&#x27;t Show Again</h4>
+      </div>
+    </div>
+  </div>
+  
+  <div class="context-menu-overlay"></div>
+  <div style="opacity:0" class="theme-select-overlay wf-section">
+    <div class="theme-select-inner">
+      <div class="theme-select">
+        <div class="theme-title-block">
+          <h4 style="width: 35.28px;"></h4>
+          <h4 class="theme-title">Appearance</h4>
+          <h4 class="theme-done">Done</h4>
+        </div>
+        
+        <div class="theme-options">
+          <div class="theme-preview">
+            <div id="light-selector" class="light-preview"><img src="https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/625578aada496575b77d1a20_Pseudonaja%20Light-min.png" loading="lazy" sizes="100vw" srcset="https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/625578aada496575b77d1a20_Pseudonaja%20Light-min-p-500.png 500w, https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/625578aada496575b77d1a20_Pseudonaja%20Light-min-p-800.png 800w, https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/625578aada496575b77d1a20_Pseudonaja%20Light-min.png 1518w"
+                alt="" class="light-preview-image" />
+              <h4 class="theme-preview-title">Light</h4>
+              <div id="light-checkbox" class="theme-selector"></div>
+            </div>
+            
+            <div id="dark-selector" class="dark-preview"><img src="https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/625578aadba9177944a0083b_Pseudonaja%20Dark-min.png" loading="lazy" height="" alt="" class="dark-preview-image" />
+              <h4 class="theme-preview-title">Dark</h4>
+              <div id="dark-checkbox" class="theme-selector active"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-elements">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        
+        <div id="collapse-sidebar" class="sidebar-header-icon icon">􀏚</div>
+        
+        <div id="file-options"><svg class="sidebar-header-icon icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 28 28" fill="none"><path d="M6.44141 14.542C6.73145 14.498 7.0127 14.4717 7.31152 14.4717C7.60156 14.4717 7.8916 14.498 8.19043 14.5508V7.1416C8.19043 6.3418 8.6123 5.89355 9.46484 5.89355H13.1914V10.6748C13.1914 11.9492 13.8154 12.5645 15.0811 12.5645H19.792V20.1758C19.792 20.9844 19.3701 21.4238 18.5176 21.4238H12.9365C12.8311 22.0566 12.5938 22.6543 12.2686 23.1816H18.6758C20.5654 23.1816 21.541 22.1885 21.541 20.29V12.3096C21.541 11.0791 21.3828 10.5166 20.6182 9.73438L16.0215 5.06738C15.2744 4.31152 14.6592 4.13574 13.5518 4.13574H9.30664C7.42578 4.13574 6.44141 5.12891 6.44141 7.03613V14.542ZM14.7207 10.5078V6.12207L19.5547 11.0264H15.248C14.8789 11.0264 14.7207 10.8682 14.7207 10.5078ZM7.32031 24.7812C9.78125 24.7812 11.8467 22.7246 11.8467 20.2461C11.8467 17.7676 9.79883 15.7197 7.32031 15.7197C4.8418 15.7197 2.79395 17.7676 2.79395 20.2461C2.79395 22.7334 4.8418 24.7812 7.32031 24.7812ZM9.75488 20.9932C9.3418 20.9932 9.00781 20.6504 9.00781 20.2461C9.00781 19.8506 9.3418 19.499 9.75488 19.499C10.1592 19.499 10.4932 19.8506 10.4932 20.2461C10.4844 20.6504 10.1504 20.9932 9.75488 20.9932ZM4.87695 20.9844C4.48145 20.9844 4.14746 20.6416 4.14746 20.2461C4.14746 19.8506 4.48145 19.5078 4.87695 19.5078C5.29004 19.5078 5.62402 19.8506 5.62402 20.2461C5.61523 20.6416 5.28125 20.9844 4.87695 20.9844ZM7.32031 20.9844C6.9248 20.9844 6.58203 20.6416 6.58203 20.2461C6.58203 19.8506 6.9248 19.5078 7.32031 19.5078C7.72461 19.5078 8.06738 19.8506 8.06738 20.2461C8.05859 20.6416 7.72461 20.9844 7.32031 20.9844Z" fill="#1C1C1E"/></svg></div>
+      </div>
+      
+      <div class="search">
+        <div class="search-text">􀊫  Find in Source Files</div>
+      </div>
+      
+      <div class="title"><img src="https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/62522203a9e4f6c0bd1343ee_Pseudonaja%20App%20Icon.svg" loading="lazy" alt="" class="title-app-icon" />
+        <div class="title-block">
+          <div class="title-input-block w-form">
+            <input type="text" class="title-name large w-input" maxlength="30" name="Project-Title" placeholder="Project Title" value="Project Title" id="project-title-input" />
+          </div>
+          
+          <div class="title-pseudonaja">Pseudonaja v3.0 beta</div>
+        </div>
+      </div>
+      
+      <div class="code-files">
+        <h4 class="file-panel-heading">Code</h4>
+
+        <div id="file-tree">
+          <div class="file-title active">
+            <div class="file-name psc">myProgram.psc</div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="file-options-menu" class="context-menu file-menu">
+        <div class="context-menu-content">
+          <div class="context-menu-item top" id="new-file">
+            <div class="menu-item-label">New File</div>
+            <div><svg class="menu-item-icon" width="17" height="18" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.44141 10.542C4.73145 10.498 5.0127 10.4717 5.31152 10.4717C5.60156 10.4717 5.8916 10.498 6.19043 10.5508V3.1416C6.19043 2.3418 6.6123 1.89355 7.46484 1.89355H11.1914V6.6748C11.1914 7.94922 11.8154 8.56445 13.0811 8.56445H17.792V16.1758C17.792 16.9844 17.3701 17.4238 16.5176 17.4238H10.9365C10.8311 18.0566 10.5938 18.6543 10.2686 19.1816H16.6758C18.5654 19.1816 19.541 18.1885 19.541 16.29V8.30957C19.541 7.0791 19.3828 6.5166 18.6182 5.73438L14.0215 1.06738C13.2744 0.311523 12.6592 0.135742 11.5518 0.135742H7.30664C5.42578 0.135742 4.44141 1.12891 4.44141 3.03613V10.542ZM12.7207 6.50781V2.12207L17.5547 7.02637H13.248C12.8789 7.02637 12.7207 6.86816 12.7207 6.50781ZM5.32031 20.7812C7.78125 20.7812 9.84668 18.7246 9.84668 16.2461C9.84668 13.7676 7.79883 11.7197 5.32031 11.7197C2.8418 11.7197 0.793945 13.7676 0.793945 16.2461C0.793945 18.7334 2.8418 20.7812 5.32031 20.7812ZM2.44629 16.2461C2.44629 15.8857 2.69238 15.6484 3.05273 15.6484H4.71387V13.9873C4.71387 13.627 4.95117 13.3809 5.32031 13.3809C5.68945 13.3809 5.92676 13.627 5.92676 13.9873V15.6484H7.58789C7.94824 15.6484 8.18555 15.8857 8.18555 16.2461C8.18555 16.6152 7.94824 16.8525 7.58789 16.8525H5.92676V18.5225C5.92676 18.8828 5.68945 19.1289 5.32031 19.1289C4.95117 19.1289 4.71387 18.8828 4.71387 18.5225V16.8525H3.05273C2.69238 16.8525 2.44629 16.6152 2.44629 16.2461Z" fill="#1C1C1E"/></svg></div>
+          </div>
+          
+          <div class="context-menu-separator"></div>
+          
+          <div id="upload-file-button" class="context-menu-item">
+            <div class="menu-item-label">Upload File</div>
+            <div class="menu-item-icon">􀈻</div>
+          </div>
+          <div class="get-file-input"><input type="file" id="upload-file"></div>
+          
+          <div class="context-menu-spacer"></div>
+          
+          <div id="upload-project-button" class="context-menu-item">
+            <div class="menu-item-label">Upload Project</div>
+            <div class="menu-item-icon">􀈥</div>
+          </div>
+          <div class="get-project-input"><input type="file" id="upload-project" accept=".pscp"></div>
+          
+          <div class="context-menu-separator"></div>
+          
+          <div id="download-project-button" class="context-menu-item">
+            <div class="menu-item-label">Save Project</div>
+            <div class="menu-item-icon">􀈧</div>
+          </div>
+          
+          <div class="context-menu-spacer"></div>
+          
+          <div id="clear-files-button" class="context-menu-item bottom red">
+            <div class="menu-item-label">Clear Files</div>
+            <div class="menu-item-icon">􀈑</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="editor-panel">
+      <div class="editor-title">
+        <div class="editor-icons-left">
+          <div id="run-button" class="editor-header icon">􀊄</div>
+        </div>
+        
+        <div id="project-title" class="title-name"></div>
+        
+        <div class="editor-icons-right">
+          <div id="editor-options" class="editor-header icon">􀍡</div>
+          <div class="editor-header icon console-icon">􀏭</div>
+        </div>
+      </div>
+      
+      <div id="editor-options-menu" class="context-menu">        
+        <div class="context-menu-content">
+          <div class="context-menu-item top">
+            <div class="menu-item-label">About</div>
+            <div class="menu-item-icon">􀅴</div>
+          </div>
+          
+          <div class="context-menu-separator"></div>
+          
+          <a href="https://pseudonajadocs.gitbook.io/" target="_blank" class="context-menu-link w-inline-block">
+            <div class="context-menu-item">
+              <div class="menu-item-label">Documentation</div>
+              <div class="menu-item-icon">􀉆</div>
+            </div>
+          </a>
+          
+          <div class="context-menu-spacer"></div>
+          
+          <div id="set-appearance" class="context-menu-item">
+            <div class="menu-item-label">Appearance</div>
+            <div class="menu-item-icon">􀎑</div>
+          </div>
+          
+          <div class="context-menu-separator"></div>
+          
+          <div id="line-numbers-toggle" class="context-menu-item">
+            <div class="menu-item-label">Toggle Line Numbers</div>
+            <div class="menu-item-icon">􀋴</div>
+          </div>
+          
+          <div class="context-menu-spacer"></div>
+          
+          <div id="screenshot" class="context-menu-item">
+            <div class="menu-item-label">Screenshot</div>
+            <div class="menu-item-icon">􀌞</div>
+          </div>
+          
+          <div class="context-menu-spacer"></div>
+          
+          <a href="https://github.com/PseudocodeEditor/Codemirror-6-editor/issues" target="_blank" class="context-menu-link w-inline-block">
+            <div class="context-menu-item bottom">
+              <div class="menu-item-label">Send Feedback</div>
+              <div class="menu-item-icon">􀍕</div>
+            </div>
+          </a>
+          
+        </div>
+      </div>
+
+      <div style="display: none" id="get-started">
+        <ul>
+          <li>Name the project <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>H</kbd></li>
+          <li>Upload a Project <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>O</kbd></li>
+          <li>Download a Project <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>S</kbd></li>
+          <li>Make a File <kbd>Ctrl</kbd><kbd>N</kbd></li>
+          <li>Upload a File <kbd>Ctrl</kbd><kbd>O</kbd></li>
+          <li>Download a File <kbd>Ctrl</kbd><kbd>S</kbd></li>
+          <li>Delete a File <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Backspace</kbd></li>
+        </ul>
+      </div>
+      
+      <div id="editor" class="editor"></div>
+    </div>
+    
+    <div class="console-panel">
+      <div class="console-header">
+        <div style="width: 29.41px"></div>
+        <div class="console-heading">Console</div>
+        <div id="collapse-console" class="console-heading icon">􀏛</div>
+      </div>
+      <div class="console"></div>
+    </div>
+  </div>
+
+  <img style="display: none" src="/media/file.svg"><!-- load the image idk how to be better -->
+  <input type="file" style="display: none" id="hidden-file-input">
+  
+  <script src="/editor.js"></script>
+</body>
+</html>

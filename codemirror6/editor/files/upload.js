@@ -10,8 +10,7 @@ export function readFileContent(file) {
   });
 }
 
-document.querySelector("#upload-file").addEventListener('change', (event) => {
-	const input = event.target;
+function uploadFile(input) {
   if ('files' in input && input.files.length > 0) {
 	  readFileContent(input.files[0])
       .then(content => {
@@ -39,6 +38,14 @@ document.querySelector("#upload-file").addEventListener('change', (event) => {
         setFileName(inputElem, newFile, fileName);
       }).catch(error => console.log(error));
   }
+}
+
+document.querySelector("#upload-file").addEventListener("change", (event) => {
+	uploadFile(event.target);  
+});
+
+document.querySelector("#hidden-file-input").addEventListener("change", (event) => {
+  uploadFile(event.target);
 });
 
 document.querySelector("#upload-file-button").addEventListener("click", () => {
