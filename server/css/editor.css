@@ -12,14 +12,21 @@
   min-width: 3ch;
 }
 
+.ͼp {
+  background-color: transparent;
+}
+
 .ͼp .cm-gutters {
   padding-left: 0.8rem;
   margin-bottom: 35vh;
+  background-color: transparent;
+  border: none;
 }
 
 .ͼp .cm-scroller {
   line-height: 1.9;
   font-size: 13px;
+  font-family: "JetBrains Mono", monospace !important;
 }
 
 .ͼ1.cm-editor.cm-focused {
@@ -32,6 +39,22 @@
 
 .ͼp .cm-activeLineGutter {
   background-color: transparent !important;
+}
+
+.cm-tooltip {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 13px;
+}
+
+.cm-foldPlaceholder {
+  border: none !important;
+  border-radius: 5px !important;
+  padding: 0 6px !important;
+  margin: 0 3.5px !important;
+  font-family: "Hiragino Sans", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 10px;
 }
 
 .data-grammarly-part {
