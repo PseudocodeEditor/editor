@@ -1,4 +1,4 @@
-import {updateExtensions} from "../styles/themes.js";
+import {updateExtensions} from "../extensions/themes.js";
 
 export function openFile(file) {
   if (!file.classList.contains("active")) {

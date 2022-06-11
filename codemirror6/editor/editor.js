@@ -1,7 +1,7 @@
 import {EditorView} from "@codemirror/view";
 import {EditorState} from "@codemirror/basic-setup";
 
-import {getExtensions} from "./styles/themes.js";
+import {getExtensions} from "./extensions/themes.js";
 
 const state = EditorState.create({
   doc: `// File handling example
@@ -40,9 +40,6 @@ import "./files/rename.js";
 import "./files/upload.js";
 import "./files/delete.js";
 import "./files/download.js";
-
-import "./styles/themes.js";
-import "./styles/styling.js";
 
 import "./project/rename.js";
 import "./project/upload.js";

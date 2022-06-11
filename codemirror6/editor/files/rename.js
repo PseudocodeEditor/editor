@@ -4,9 +4,6 @@ import {downloadFile} from "./download.js";
 
 import {toggleShow} from "../misc/show.js";
 
-import {updateExtensions} from "../styles/themes.js";
-
-
 function buildFileContextMenu() {
   const menu = document.createElement("div");
   menu.classList.add("context-menu");
@@ -169,7 +166,7 @@ export function setFileName(input, parent, oldName, uploaded=false) {
     } else if (newName.length === 0) {      
       alert("Filename must be at least 1 character long!");
       return;
-    } else if (!/^[a-zA-Z0-9_\. -]+$/.test(newName)) {      
+    } else if (!/^[a-zA-Z0-9_. -]+$/.test(newName)) {
       alert("Filename must be alphnumeric + spaces + -_.");
       return;
     }
