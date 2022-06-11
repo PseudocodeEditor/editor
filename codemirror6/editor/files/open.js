@@ -18,9 +18,9 @@ export function openFile(file) {
     const content = files[file.querySelector(".file-name").innerText];
     
     editor.update([editor.state.update({changes: {from: 0, to: editor.state.doc.length, insert: content}})]);
-
-    updateExtensions();
   }
+
+  updateExtensions();
 }
 
 document.querySelectorAll(".file-title").forEach(file => {
