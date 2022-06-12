@@ -4,45 +4,42 @@
   background-color: var(--editor-bg);
 }
 
-.ͼ1.cm-editor {
+.cm-editor {
   padding-top: 0.4rem;
+  background-color: transparent;
 }
 
 .cm-gutter {
   min-width: 3ch;
 }
 
-.ͼp {
-  background-color: transparent;
-}
-
-.ͼp .cm-gutters {
+.cm-gutters {
   padding-left: 0.8rem;
   margin-bottom: 35vh;
-  background-color: transparent;
-  border: none;
+  background-color: transparent !important;
+  border: none !important;
 }
 
-.ͼp .cm-scroller {
-  line-height: 1.9;
+.cm-scroller {
+  line-height: 1.9 !important;
   font-size: 13px;
   font-family: "JetBrains Mono", monospace !important;
 }
 
-.ͼ1.cm-editor.cm-focused {
-  outline: none;
+.cm-editor.cm-focused {
+  outline: none !important;
 }
 
-.ͼp .cm-activeLine {
+.cm-activeLine {
   background-color: transparent !important;
 }
 
-.ͼp .cm-activeLineGutter {
+.cm-activeLineGutter {
   background-color: transparent !important;
 }
 
 .cm-tooltip {
-  font-family: 'JetBrains Mono', monospace !important;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
 }
 

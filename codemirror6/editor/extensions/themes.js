@@ -24,9 +24,6 @@ const psLight = EditorView.theme(
         ".cm-gutters": {
             color: "#A4A4A4"
         },
-        ".cm-gutter": {
-            minWidth: "3ch",
-        },
         ".cm-activeLineGutter": {
             color: "black"
         },
