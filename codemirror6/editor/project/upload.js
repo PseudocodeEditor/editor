@@ -2,6 +2,8 @@ import {openFile} from "../files/open.js";
 import {setFileName} from "../files/rename.js";
 import {readFileContent} from "../files/upload.js";
 
+import {setEditorContent, showEditor} from "../misc/editorHelpers.js";
+
 export function openProject(content) {
   const data = JSON.parse(content);
   const projName = data.projectName;
@@ -13,8 +15,7 @@ export function openProject(content) {
   document.querySelector("#file-tree").innerHTML = "";
   
   if (!(files && Object.keys(files).length === 0 && Object.getPrototypeOf(files) === Object.prototype)) {
-    document.querySelector(".cm-gutters").style.opacity = "1";
-    document.querySelector(".cm-content").setAttribute("contenteditable", true);
+    showEditor();
   }
 
   let first;
@@ -22,7 +23,7 @@ export function openProject(content) {
   for (let fileName in files) {
     const c = files[fileName]
     
-    editor.update([editor.state.update({changes: {from: 0, to: editor.state.doc.length, insert: c}})]);
+    setEditorContent(c)
     
     const newFile = document.createElement("div");
     newFile.classList.add("file-title");

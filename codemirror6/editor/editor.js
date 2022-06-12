@@ -2,6 +2,7 @@ import {EditorView} from "@codemirror/view";
 import {EditorState} from "@codemirror/basic-setup";
 
 import {getExtensions} from "./extensions/themes.js";
+import {getEditorContent} from "./misc/editorHelpers.js";
 
 const state = EditorState.create({
   doc: `// File handling example
@@ -31,7 +32,7 @@ window.editor = new EditorView({
   parent: document.querySelector("#editor")
 });
 
-window.files = { [document.querySelector(".file-name").innerText]: editor.state.doc.toString() };
+window.files = { [document.querySelector(".file-name").innerText]: getEditorContent() };
 
 import "./files/new.js";
 import "./files/open.js";

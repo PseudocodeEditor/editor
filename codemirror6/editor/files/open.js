@@ -1,15 +1,16 @@
 import {updateExtensions} from "../extensions/themes.js";
+import {setEditorContent, getEditorContent, showEditor} from "../misc/editorHelpers.js";
 
 export function openFile(file) {
   if (!file.classList.contains("active")) {
     if (files && Object.keys(files).length === 0 && Object.getPrototypeOf(files) === Object.prototype) {
-      document.querySelector(".cm-content").setAttribute("contenteditable", true);
+      showEditor();
     } else {
       const recent = document.querySelector(".file-title.active");
       if (recent !== null) {
         if (recent.querySelector("input") !== null) return; // still editing file name
         recent.classList.remove("active");
-        files[recent.querySelector(".file-name").innerText] = editor.state.doc.toString();
+        files[recent.querySelector(".file-name").innerText] = getEditorContent();
       }
     }
     
@@ -17,7 +18,7 @@ export function openFile(file) {
 
     const content = files[file.querySelector(".file-name").innerText];
     
-    editor.update([editor.state.update({changes: {from: 0, to: editor.state.doc.length, insert: content}})]);
+    setEditorContent(content);
   }
 
   updateExtensions();

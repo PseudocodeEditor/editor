@@ -3,6 +3,7 @@ import {deleteFile} from "./delete.js";
 import {downloadFile} from "./download.js";
 
 import {toggleShow} from "../misc/show.js";
+import {getEditorContent, showEditor} from "../misc/editorHelpers";
 
 function buildFileContextMenu() {
   const menu = document.createElement("div");
@@ -156,8 +157,7 @@ export function setFileName(input, parent, oldName, uploaded=false) {
 
   let content;
   if (files && Object.keys(files).length === 0 && Object.getPrototypeOf(files) === Object.prototype) {
-    document.querySelector(".cm-gutters").style.opacity = "1";
-    document.querySelector(".cm-content").setAttribute("contenteditable", true);
+    showEditor();
     content = `OUTPUT "Hello World!"`;
   } else {
     if (newName !== oldName && newName in files) {
@@ -166,13 +166,13 @@ export function setFileName(input, parent, oldName, uploaded=false) {
     } else if (newName.length === 0) {      
       alert("Filename must be at least 1 character long!");
       return;
-    } else if (!/^[a-zA-Z0-9_. -]+$/.test(newName)) {
-      alert("Filename must be alphnumeric + spaces + -_.");
+    } else if (!/^[a-zA-Z\d_. -]+$/.test(newName)) {
+      alert("Filename must be alphanumeric + spaces + -_.");
       return;
     }
 
     if (oldName in files) {
-      content = uploaded ? files[oldName] : editor.state.doc.toString();
+      content = uploaded ? files[oldName] : getEditorContent();
       delete files[oldName]
     } else {
       content = `OUTPUT "Hello World!"`;

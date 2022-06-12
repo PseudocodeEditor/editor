@@ -1,10 +1,12 @@
 import {duplicateName} from "./new.js";
 import {setFileName} from "./rename.js";
 
+import {showEditor} from "../misc/editorHelpers";
+
 export function readFileContent(file) {
 	const reader = new FileReader();
   return new Promise((resolve, reject) => {
-    reader.onload = event => resolve(event.target.result);
+    reader.onload  = event => resolve(event.target.result);
     reader.onerror = error => reject(error);
     reader.readAsText(file);
   });
@@ -17,8 +19,7 @@ function uploadFile(input) {
         const fileName = duplicateName(input.files[0].name);
 
         if (files && Object.keys(files).length === 0 && Object.getPrototypeOf(files) === Object.prototype) {
-          document.querySelector(".cm-gutters").style.opacity = "1";
-          document.querySelector(".cm-content").setAttribute("contenteditable", true);
+          showEditor();
         }
 
         files[fileName] = content;
