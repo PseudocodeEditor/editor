@@ -3,6 +3,7 @@ import {toggleShow} from "./show.js";
 const dropdowns = {
   "#editor-options": "#editor-options-menu",
   "#set-appearance": ".theme-select-overlay",
+  "#view-about": ".about-overlay",
   "#file-options": "#file-options-menu"
 }
 

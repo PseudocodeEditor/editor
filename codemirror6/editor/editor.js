@@ -45,10 +45,10 @@ import "./files/download.js";
 import "./project/rename.js";
 import "./project/upload.js";
 import "./project/download.js";
-
 import "./misc/welcome.js";
 import "./misc/sidebars.js";
 import "./misc/dropdowns.js";
+import "./misc/about.js";
 import "./misc/lineNumbers.js";
 import "./misc/codeClipper.js";
 import "./misc/rememberProject.js";
