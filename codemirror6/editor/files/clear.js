@@ -1,11 +1,17 @@
 import {setEditorContent, hideEditor} from "../misc/editorHelpers.js";
 
+import {toggleShow} from "../misc/show.js";
+import {makeConfirm} from "../misc/alert.js"
+
 document.querySelector("#clear-files-button").addEventListener("click", () => {
-  if (!confirm("Are you sure you want to delete every file in this project?")) return;
 
-  document.querySelector("#file-tree").innerHTML = "";
-
-  files = {};
-  setEditorContent("");
-  hideEditor();
+  makeConfirm("This will delete all files and will be unrecoverable.", null, true)
+    .then(sure => {
+      if (sure) {
+        document.querySelector("#file-tree").innerHTML = "";
+        files = {};
+        setEditorContent("");
+        hideEditor();
+      }
+    });
 });

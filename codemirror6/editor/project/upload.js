@@ -2,6 +2,8 @@ import {openFile} from "../files/open.js";
 import {setFileName} from "../files/rename.js";
 import {readFileContent} from "../files/upload.js";
 
+import {makeConfirm} from "../misc/alert.js";
+
 import {setEditorContent, showEditor} from "../misc/editorHelpers.js";
 
 export function openProject(content) {
@@ -51,12 +53,7 @@ document.querySelector("#upload-project").addEventListener("change", (event) => 
   }
 });
 
-document.querySelector("#upload-project-button").addEventListener("click", (event) => {  
-  if (!confirm("This will remove your current files, do you wish to continue?")) {
-    event.preventDefault();
-    return;
-  }
-
-  document.querySelector("#upload-project").value = null;
-  document.querySelector("#upload-project").click();
+document.querySelector("#upload-project-button").addEventListener("click", (event) => {
+  makeConfirm("Loading a project file will delete any current files in the file pane.", "􀈥")
+    .then(sure => { if (sure) document.querySelector("#upload-project").click(); });
 });
