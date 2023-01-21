@@ -3,3 +3,4 @@ node_modules/
 replit.nix
 dist/editor.bundle.js
 dist/editor.bundle.d.ts
+.idea/
