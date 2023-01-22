@@ -1,6 +1,5 @@
 import {setEditorContent, hideEditor} from "../misc/editorHelpers.js";
 
-import {toggleShow} from "../misc/show.js";
 import {makeConfirm} from "../misc/alert.js"
 
 export function deleteFile(fileElem) {

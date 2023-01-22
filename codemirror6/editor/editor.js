@@ -34,6 +34,16 @@ window.editor = new EditorView({
 
 window.files = { [document.querySelector(".file-name").innerText]: getEditorContent() };
 
+import "./run/run.js";
+import "./run/error.js";
+import "./run/input.js";
+import "./run/output.js";
+import "./run/queued.js";
+import "./run/success.js";
+import "./run/running.js";
+import "./run/websocket.js";
+import "./run/queueUpdate.js";
+
 import "./files/new.js";
 import "./files/open.js";
 import "./files/clear.js";

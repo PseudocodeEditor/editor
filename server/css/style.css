@@ -129,6 +129,11 @@ body.light {
 	transition: transform .3s
 }
 
+#run-button.disabled {
+	cursor: wait;
+	color: #5f3080;
+}
+
 #editor-options-menu .context-menu-content {
   position: fixed;
 }
@@ -1398,7 +1403,43 @@ label {
 	height: 88vh;
 	border: 1.5px solid var(--editor-brdr);
 	border-radius: 12px;
-	background-color: var(--sidebar-bg)
+	padding: 8px;
+	background-color: var(--sidebar-bg);
+	font-family: monospace;
+	overflow-y: auto;
+}
+
+.console .error {
+	color: #FF453A;
+}
+
+.console .output, .console .input, .console input {
+	color: var(--text-clr);
+}
+
+.console .input, .console input {
+	font-style: italic;
+}
+
+.console input {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	font-family: monospace;
+	padding: 0;
+	margin: 0;
+	font-style: italic;
+	width: 100%;
+}
+
+.console .prompt {
+	color: var(--heading-txt);
+	font-weight: bold;
+	margin: 0;
+}
+
+.console #queue {
+	color: var(--secondary-txt)
 }
 
 .editor-header {

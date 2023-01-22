@@ -25,5 +25,5 @@ function copyEditor() {
   });
 }
 
-document.querySelector("#run-button").addEventListener("click", copyEditor);
+// document.querySelector("#run-button").addEventListener("click", copyEditor);
 document.querySelector("#screenshot").addEventListener("click", copyEditor);
