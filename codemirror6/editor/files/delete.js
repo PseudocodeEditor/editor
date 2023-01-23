@@ -2,6 +2,8 @@ import {setEditorContent, hideEditor} from "../misc/editorHelpers.js";
 
 import {makeConfirm} from "../misc/alert.js"
 
+import { updateExtensions } from "../extensions/themes.js";
+
 export function deleteFile(fileElem) {
   /*
   if (!confirm("Are you sure you want to delete this file?")) return;
@@ -40,6 +42,8 @@ export function deleteFile(fileElem) {
               file.classList.add("active");
             }
           });
+
+          updateExtensions();
         }
       }
     });
