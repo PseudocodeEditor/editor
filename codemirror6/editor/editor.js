@@ -1,5 +1,5 @@
 import {EditorView} from "@codemirror/view";
-import {EditorState} from "@codemirror/basic-setup";
+import {EditorState} from "@codemirror/state";
 
 import {getExtensions} from "./extensions/themes.js";
 import {getEditorContent} from "./misc/editorHelpers.js";

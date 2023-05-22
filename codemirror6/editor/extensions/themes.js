@@ -2,7 +2,8 @@ import {PS2} from "../../PS2/";
 
 import {EditorView} from "@codemirror/view";
 import {StateEffect} from "@codemirror/state";
-import {tags, HighlightStyle} from "@codemirror/highlight";
+import {tags} from "@lezer/highlight";
+import {HighlightStyle, syntaxHighlighting} from "@codemirror/language"
 
 import {extensions} from "./extensions.js";
 
@@ -97,13 +98,13 @@ const psDarkHighlight = HighlightStyle.define([
 const lightThemeExtensions = [
     ...extensions,
     psLight,
-    psLightHighlight
+    syntaxHighlighting(psLightHighlight)
 ];
 
 const darkThemeExtensions = [
     ...extensions,
     psDark,
-    psDarkHighlight
+    syntaxHighlighting(psDarkHighlight)
 ];
 
 export function getExtensions() {

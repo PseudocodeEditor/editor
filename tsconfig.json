@@ -2,6 +2,7 @@
   "compilerOptions": {
     "strict": true,
     "target": "es6",
+    "lib": ["es2020"],
     "module": "es2020",
     "newLine": "lf",
     "declaration": true,

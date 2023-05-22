@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
 .editor {
+  height: calc(100% - var(--title-height));
   background-color: var(--editor-bg);
 }
 

@@ -1,6 +1,6 @@
 import {parser} from "./syntax.grammar";
 import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp, foldInside, syntaxTree} from "@codemirror/language";
-import {styleTags, tags as t} from "@codemirror/highlight";
+import {styleTags, tags as t} from "@lezer/highlight";
 import {CompletionContext} from "@codemirror/autocomplete";
 
 export const PS2Language = LRLanguage.define({
@@ -53,7 +53,7 @@ export function PS2() {
           return null;
         }
         
-        if (tree.cursor(context.pos, -1).name === "Identifier") { 
+        if (tree.cursorAt(context.pos, -1).name === "Identifier") {
           let options = [
             { label: "OR",           type: "keyword"  },
             { label: "AND",          type: "keyword"  },
