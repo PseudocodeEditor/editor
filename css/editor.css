@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+.editor {
+  height: calc(100% - var(--title-height));
+  background-color: var(--editor-bg);
+}
+
+.cm-editor {
+  padding-top: 0.4rem;
+  background-color: transparent;
+}
+
+.cm-gutter {
+  min-width: 3ch;
+}
+
+.cm-gutters {
+  padding-left: 0.8rem;
+  margin-bottom: 35vh;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.cm-scroller {
+  line-height: 1.9 !important;
+  font-size: 13px;
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+.cm-editor.cm-focused {
+  outline: none !important;
+}
+
+.cm-activeLine {
+  background-color: transparent !important;
+}
+
+.cm-activeLineGutter {
+  background-color: transparent !important;
+}
+
+.cm-tooltip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+.cm-foldPlaceholder {
+  border: none !important;
+  border-radius: 5px !important;
+  padding: 0 6px !important;
+  margin: 0 3.5px !important;
+  font-family: "Hiragino Sans", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 10px;
+}
+
+.data-grammarly-part {
+  display: none;
+}
