@@ -108,8 +108,8 @@ const darkThemeExtensions = [
 ];
 
 export function getExtensions() {
-    const name = document.querySelector(".file-title.active .file-name").innerText;
-    const fileType = name.substring(name.lastIndexOf(".") + 1, name.length).toLowerCase();
+    const name = document.querySelector(".file-title.active .file-name")?.innerText;
+    const fileType = name?.substring(name.lastIndexOf(".") + 1, name.length).toLowerCase();
 
     if (getCookie("light-mode") === "true") {
         return fileType === "psc" ? [PS2(), ...lightThemeExtensions] : lightThemeExtensions

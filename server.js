@@ -1,4 +1,5 @@
 const path = require("path");
+const serveIndex = require("serve-index");
 const express = require("express");
 
 const app = express();
@@ -28,10 +29,16 @@ app.get("/media/psc.svg", (req, res) => {
   res.sendFile(path.join(__dirname + "/server/media/psc.svg"));
 });
 
+app.get("/media/App-Icon.png", (req, res) => {
+  res.sendFile(path.join(__dirname + "/server/media/App-Icon.png"));
+});
+
 app.get("/favicon.ico", (req, res) => {
   res.sendFile(path.join(__dirname + "/server/media/favicon.ico"));
 });
- 
+
+app.use("/PS2", express.static("PS2/"), serveIndex("PS2"));
+
 app.listen(PORT, err => {
   if (err) console.log(err);
   console.log("Server listening on PORT", PORT);

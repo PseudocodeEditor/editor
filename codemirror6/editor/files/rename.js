@@ -81,7 +81,7 @@ function buildFileContextMenu() {
 }
 
 
-function addDots(fileElem) {
+export function addDots(fileElem) {
   const dots = document.createElement("div");
   dots.classList.add("file-dots");
 
@@ -93,7 +93,7 @@ function addDots(fileElem) {
   fileElem.appendChild(menu);
 
   const overlay = document.querySelector(".context-menu-overlay");
-  
+
   dots.addEventListener("click", () => {
     toggleShow(menu);
     overlay.style.display = "block";
@@ -131,7 +131,7 @@ function addDots(fileElem) {
 document.querySelectorAll(".file-title").forEach(elem => addDots(elem));
 
 
-function sortFiles() {
+export function sortFiles() {
   let fileElems = document.querySelectorAll(".file-title");
 
   let sorted = false;
@@ -163,7 +163,7 @@ export function setFileName(input, parent, oldName, uploaded=false) {
     if (newName !== oldName && newName in files) {
       alert("Can't have 2 files with the same name!");
       return;
-    } else if (newName.length === 0) {      
+    } else if (newName.length === 0) {
       alert("Filename must be at least 1 character long!");
       return;
     } else if (!/^[a-zA-Z\d_. -]+$/.test(newName)) {
@@ -174,27 +174,29 @@ export function setFileName(input, parent, oldName, uploaded=false) {
     if (oldName in files) {
       content = uploaded ? files[oldName] : getEditorContent();
       delete files[oldName]
-    } else {
+    } else if (newName.endsWith(".psc")) {
       content = `OUTPUT "Hello World!"`;
+    } else {
+      content = "";
     }
   }
   files[newName] = content;
-  
-  const fileName = document.createElement("div");  
+
+  const fileName = document.createElement("div");
   fileName.innerText = newName;
-  
+
   fileName.classList.add("file-name");
   if (newName.substring(newName.lastIndexOf(".") + 1, newName.length).toLowerCase() === "psc") {
     fileName.classList.add("psc");
-  }  
+  }
 
   input.remove();
-  
+
   parent.appendChild(fileName);
   addDots(parent);
 
   parent.addEventListener("click", () => { openFile(parent) });
-  
+
   sortFiles();
   if (!uploaded) openFile(parent);
 }
@@ -209,7 +211,7 @@ export function renameFile(fileElem) {
   const input = document.createElement("input");
   input.classList.add("edit-file-name");
   input.value = fileName;
-  
+
   fileElem.appendChild(input);
 
   const selectionEnd = fileName.indexOf(".");
