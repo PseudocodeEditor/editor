@@ -1,0 +1,33 @@
+{
+  "name": "Pseudonaja",
+  "short_name": "Pseudonaja",
+  "description": "Pseudonaja is a CIE compliant pseudocode editor for GCSE and A-Level students, providing an easy interface to write, edit and run pseudocode.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "theme_color": "#b16ff8",
+  "background_color": "#363639",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/media/App-Icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/media/desktop.png",
+      "sizes": "640x362",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop image"
+    },
+    {
+      "src": "/media/phone.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile image"
+    }
+  ]
+}

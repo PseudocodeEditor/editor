@@ -1,4 +1,4 @@
-const cacheName = "cache-v1";
+const cacheName = "cache-v2";
 
 self.addEventListener('install', e => {
     e.waitUntil(
@@ -16,6 +16,8 @@ self.addEventListener('install', e => {
                 "/media/favicon.ico",
                 "/media/file.svg",
                 "/media/psc.svg",
+                "/media/desktop.png",
+                "/media/phone.png",
 
                 "/PS2/main.py",
                 "/PS2/ps2/__init__.py",
@@ -42,9 +44,7 @@ self.addEventListener('install', e => {
 
 self.addEventListener('fetch', e => {
     e.respondWith((async () => {
-        const r = await caches.match(e.request);
-
-        console.log('Fetching', e.request.url);
+        const r = await caches.match(e.request.url);
 
         if (r && !navigator.onLine) return r;
 
