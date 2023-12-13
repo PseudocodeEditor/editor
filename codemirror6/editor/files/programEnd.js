@@ -8,7 +8,11 @@ new MutationObserver(() => {
     if (run_button.innerText === "􀛷") return;
 
     const current = document.querySelector(".active .file-name").innerText;
-    if (current) setEditorContent(files[current]);
+    if (current) {
+        const selection = editor.state.selection;
+        setEditorContent(files[current]);
+        editor.dispatch({ selection: selection });
+    }
 
     const displayedFiles = Array.from(document.querySelectorAll(".file-name")).map(e => e.innerText);
 
