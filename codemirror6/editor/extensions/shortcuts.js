@@ -1,12 +1,13 @@
 import {keymap} from "@codemirror/view";
 import {acceptCompletion} from "@codemirror/autocomplete";
 import {defaultKeymap, indentLess, indentMore} from "@codemirror/commands";
+import { Prec } from "@codemirror/state";
 
 import {deleteFile} from "../files/delete";
 import {downloadFile} from "../files/download.js";
 
-export const shortcuts = keymap.of([
-  ...defaultKeymap,
+
+export const shortcuts = Prec.highest(keymap.of([
   {
     key: "Tab",
     preventDefault: true,
@@ -46,5 +47,15 @@ export const shortcuts = keymap.of([
       i.focus();
       i.remove();
     }
-  }
-])
+  },
+  {
+    key: "Mod-Enter",
+    preventDefault: true,
+    run: () => {
+      const button = document.querySelector("#run-button");
+      button.click();
+      return true; // Stop the default keymap of creating a new line from running
+    }
+  },
+  ...defaultKeymap
+]))
