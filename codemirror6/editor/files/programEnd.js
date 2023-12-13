@@ -4,10 +4,10 @@ import {openFile} from "./open";
 
 const run_button = document.querySelector("#run-button");
 
-run_button.addEventListener("DOMSubtreeModified", () => {
-   if (run_button.innerText === "􀛷") return;
+new MutationObserver(() => {
+    if (run_button.innerText === "􀛷") return;
 
-   const current = document.querySelector(".active .file-name").innerText;
+    const current = document.querySelector(".active .file-name").innerText;
     if (current) setEditorContent(files[current]);
 
     const displayedFiles = Array.from(document.querySelectorAll(".file-name")).map(e => e.innerText);
@@ -31,4 +31,4 @@ run_button.addEventListener("DOMSubtreeModified", () => {
             newFile.addEventListener("click", () => { openFile(newFile) });
         }
     });
-});
+}).observe(run_button, { characterData: true, attributes: false, childList: true, subtree: false });
