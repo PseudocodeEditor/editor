@@ -53,7 +53,6 @@ self.addEventListener('fetch', e => {
         if (e.request.url.startsWith('http')) {
             const cache = await caches.open(cacheName);
             await cache.put(e.request.url, response.clone());
-            console.log(await caches.match(e.request.url))
         }
 
         return response;
