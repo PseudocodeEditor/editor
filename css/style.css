@@ -1252,6 +1252,18 @@ label {
 	letter-spacing: -.03em
 }
 
+.edit-file-name {
+	height: 100%;
+	width: 100%;
+	background: transparent;
+	color: white;
+	border: 1px solid var(--heading-txt);
+	border-radius: 6px;
+	padding: 4px 10px;
+	outline: none;
+	font-size: 14px;
+}
+
 .file-dots {
   position: absolute;
   right: 12px;
