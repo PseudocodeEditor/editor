@@ -41,6 +41,7 @@ class PS2:
             span.classList.add("error")
 
         document.querySelector(".console").appendChild(span)
+        span.scrollIntoView()
 
 
     async def error(message):

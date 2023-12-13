@@ -94,7 +94,8 @@ export function addDots(fileElem) {
 
   const overlay = document.querySelector(".context-menu-overlay");
 
-  dots.addEventListener("click", () => {
+  dots.addEventListener("click", (e) => {
+    e.stopPropagation();
     toggleShow(menu);
     overlay.style.display = "block";
     fileElem.classList.add("hover");
@@ -110,7 +111,9 @@ export function addDots(fileElem) {
   });
 
   menu.querySelectorAll(".context-menu-item").forEach(item => {
-    item.addEventListener("click", () => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation();
+
       if (menu.classList.contains("show")) {
         toggleShow(menu);
         overlay.style.removeProperty("display");

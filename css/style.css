@@ -395,7 +395,7 @@ label {
 	display: -ms-flexbox;
 	display: flex;
 	width: 23vw;
-	height: 100vh;
+	height: 100%;
 	min-width: 23vw;
 	padding: 0 20px 20px;
 	-webkit-box-orient: vertical;
@@ -415,14 +415,14 @@ label {
 	position: relative;
 	overflow: scroll;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	--title-height: 60px;
 	background-color: var(--editor-bg)
 }
 
 .console-panel {
 	width: 27vw;
-	height: 100vh;
+	height: 100%;
 	min-width: 27vw;
 	padding-right: 30px;
 	padding-bottom: 30px;
@@ -430,6 +430,8 @@ label {
 	border-left: .5px solid var(--sidebar-brdr);
 	background-color: var(--console-bg)
 }
+
+#console-run { visibility: hidden; }
 
 .search {
 	display: -webkit-box;
@@ -606,7 +608,7 @@ label {
 }
 
 .alert .continue-button {
-  width: calc(22vw - 50px);
+  width: 55%;
 }
 
 .danger .continue-button {
@@ -1202,7 +1204,7 @@ label {
 #file-tree {
   margin-top: 17px;
   overflow-y: auto;
-  height: calc(100vh - 250px);
+  height: calc(100dvh - 250px);
   scroll-behavior: smooth;
 }
 
@@ -1413,7 +1415,7 @@ label {
 
 .console {
 	width: 100%;
-	height: 88vh;
+	height: 92.5%;
 	border: 1.5px solid var(--editor-brdr);
 	border-radius: 12px;
 	padding: 8px;
@@ -1726,8 +1728,8 @@ label {
 	position: fixed;
 	z-index: 15;
 	display: none;
-	width: 100vw;
-	height: 100vh
+	width: 100%;
+	height: 100%;
 }
 
 .context-menu {
@@ -1912,6 +1914,35 @@ label {
 	display: none
 }
 
+#page-wrapper {
+	height: 100dvh;
+	display: flex;
+	flex-direction: column;
+}
+
+#bottom-tabs {
+	display: none;
+	height: 100%;
+}
+
+#bottom-tabs > button {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	background: var(--editor-bg);
+	color: var(--text-clr);
+	padding-top: 10px;
+	-webkit-tap-highlight-color: transparent;
+	transition: color 0.1s;
+}
+
+#bottom-tabs > button.selected { color: var(--heading-txt); }
+
+#bottom-tabs .tab-icon {
+	font-family: 'SF Pro Display', sans-serif;
+}
+
 @media screen and (max-width:991px) {
 	.title {
 		overflow: hidden
@@ -1923,12 +1954,33 @@ label {
 }
 
 @media screen and (max-width:767px) {
-	.sidebar {
-		display: none
+	#all-content {
+		overflow: clip;
+		height: 100dvh;
+		width: 100vw;
 	}
-	.console-panel {
-		display: none
+
+	.sidebar, .console-panel, .editor-panel {
+		width: 100vw;
 	}
+
+	.page-elements {
+		width: 300vw;
+		height: calc(100% - 50px);
+		transition: transform 0.3s;
+	}
+	.page-elements > div { padding-top: 10px; }
+
+	#page-wrapper:has(#bottom-tabs > button.selected:nth-child(1)) .page-elements { transform: translateX(0); }
+	#page-wrapper:has(#bottom-tabs > button.selected:nth-child(2)) .page-elements { transform: translateX(calc(-100% / 3)); }
+	#page-wrapper:has(#bottom-tabs > button.selected:nth-child(3)) .page-elements { transform: translateX(calc(-200% / 3)); }
+
+	#collapse-console, #collapse-sidebar { visibility: hidden; }
+
+	#console-run { visibility: visible; }
+
+	#bottom-tabs { display: flex; }
+
 	.continue-button {
 		width: 250px
 	}
@@ -2145,82 +2197,11 @@ label {
   }
 }
 
-@font-face {
-	font-family: 'SF Pro Display';
-	src: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/61d2310e1aa0fca7ae0859d9_SF-Pro-Display-MediumItalic.otf) format('opentype');
-	font-weight: 500;
-	font-style: italic;
-	font-display: swap
-}
 
 @font-face {
 	font-family: 'SF Pro Display';
-	src: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/61d2310e1aa0fc2d060859dc_SF-Pro-Display-Semibold.otf) format('opentype');
-	font-weight: 600;
-	font-style: normal;
-	font-display: swap
-}
-
-@font-face {
-	font-family: 'SF Pro Display';
-	src: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/61d2310e1aa0fc45c70859d8_SF-Pro-Display-LightItalic.otf) format('opentype');
-	font-weight: 300;
-	font-style: italic;
-	font-display: swap
-}
-
-@font-face {
-	font-family: 'SF Pro Display';
-	src: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/61d2310e1aa0fc752a0859dd_SF-Pro-Display-SemiboldItalic.otf) format('opentype');
-	font-weight: 600;
-	font-style: italic;
-	font-display: swap
-}
-
-@font-face {
-	font-family: 'SF Pro Display';
-	src: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/61d2310e1aa0fcc4c20859da_SF-Pro-Display-Regular.otf) format('opentype');
+	src: url("/fonts/SF-Pro-Display-Regular.otf") format('opentype');
 	font-weight: 400;
-	font-style: normal;
-	font-display: swap
-}
-
-@font-face {
-	font-family: 'SF Pro Display';
-	src: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/61d2310e1aa0fc4aae0859db_SF-Pro-Display-RegularItalic.otf) format('opentype');
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap
-}
-
-@font-face {
-	font-family: 'SF Pro Display';
-	src: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/61d2310e1aa0fc2d7e0859e0_SF-Pro-Display-Ultralight.otf) format('opentype');
-	font-weight: 200;
-	font-style: normal;
-	font-display: swap
-}
-
-@font-face {
-	font-family: 'SF Pro Display';
-	src: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/61d2310e1aa0fcf0730859e1_SF-Pro-Display-UltralightItalic.otf) format('opentype');
-	font-weight: 200;
-	font-style: italic;
-	font-display: swap
-}
-
-@font-face {
-	font-family: 'SF Pro Display';
-	src: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/61d2310e1aa0fc76a00859df_SF-Pro-Display-ThinItalic.otf) format('opentype');
-	font-weight: 100;
-	font-style: italic;
-	font-display: swap
-}
-
-@font-face {
-	font-family: 'SF Pro Display';
-	src: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/61d2310e1aa0fc563d0859de_SF-Pro-Display-Thin.otf) format('opentype');
-	font-weight: 100;
 	font-style: normal;
 	font-display: swap
 }

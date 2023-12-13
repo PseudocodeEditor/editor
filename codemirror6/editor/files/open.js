@@ -13,12 +13,14 @@ export function openFile(file) {
         files[recent.querySelector(".file-name").innerText] = getEditorContent();
       }
     }
-    
+
     file.classList.add("active");
 
     const content = files[file.querySelector(".file-name").innerText];
-    
+
     setEditorContent(content);
+  } else if (file.querySelector("input") === null) {
+    document.querySelector("#bottom-tabs #editor-tab").click();
   }
 
   updateExtensions();

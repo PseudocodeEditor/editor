@@ -1,4 +1,4 @@
-const cacheName = "cache-v2";
+const cacheName = "cache-v3";
 
 self.addEventListener('install', e => {
     e.waitUntil(
@@ -18,6 +18,8 @@ self.addEventListener('install', e => {
                 "/media/psc.svg",
                 "/media/desktop.png",
                 "/media/phone.png",
+
+                "/fonts/SF-Pro-Display-Regular.otf",
 
                 "/PS2/main.py",
                 "/PS2/ps2/__init__.py",

@@ -57,3 +57,4 @@ def run():
     setTimeout(create_proxy(run_code), 0)
 
 document.querySelector("#run-button").classList.remove("disabled")
+document.querySelector("#console-run").classList.remove("disabled")
