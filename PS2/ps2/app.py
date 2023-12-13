@@ -20,11 +20,11 @@ class PS2:
         document.querySelector(".console").appendChild(elem)
         elem.focus()
 
-        def keyup(e):
+        def keydown(e):
             if e.key == "Enter":
                 elem.disabled = True
 
-        elem.addEventListener("keyup", create_proxy(keyup))
+        elem.addEventListener("keydown", create_proxy(keydown))
 
         while not elem.disabled:
             await asyncio.sleep(0.1)
