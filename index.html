@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
 
-
   <title>Pseudonaja Editor</title>
   <meta content="Pseudonaja is a CIE compliant pseudocode editor for GCSE and A-Level students, providing an easy interface to write, edit and run pseudocode." name="description">
   <meta content="Pseudonaja Editor" property="og:title">
@@ -292,5 +291,22 @@
     from = "PS2/"
   </py-config>
   <script type="py" src="/PS2/main.py"></script>
+
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', e => {
+        navigator.serviceWorker.register('/service-worker.js')
+                .then(r => {
+                  reg = r;
+
+                  console.log('Registered service worker');
+                })
+                .catch(err => {
+                  console.error('Could not register service worker:', err);
+                });
+      });
+    }
+  </script>
 </body>
 </html>
