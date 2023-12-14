@@ -8,7 +8,7 @@ export const PS2Language = LRLanguage.define({
     props: [
       indentNodeProp.add({
         Application: cx => cx.baseIndent + (/^\s*(ELSE|ENDIF|ENDWHILE|UNTIL|NEXT|ENDFUNCTION|ENDPROCEDURE|ENDACSE|ENDTYPE|ENDCLASS)\b/.test(cx.textAfter) ? 0 : cx.unit)
-      }),        
+      }),
       foldNodeProp.add({
         Application: foldInside
       }),
@@ -45,14 +45,14 @@ export function PS2() {
   return new LanguageSupport(
     PS2Language,
     PS2Language.data.of({
-      autocomplete: (context: CompletionContext) => {        
+      autocomplete: (context: CompletionContext) => {
         const tree = syntaxTree(context.state);
         const word = context.matchBefore(/\w*/)!;
 
         if (word.from === word.to && !context.explicit) {
           return null;
         }
-        
+
         if (tree.cursorAt(context.pos, -1).name === "Identifier") {
           let options = [
             { label: "OR",           type: "keyword"  },
@@ -77,7 +77,7 @@ export function PS2() {
             { label: "ENDFUNCTION",  type: "keyword"  },
             { label: "RETURNS",      type: "keyword"  },
             { label: "RETURN",       type: "keyword"  },
-            { label: "FOR",          type: "keyword"  }, 
+            { label: "FOR",          type: "keyword"  },
             { label: "TO",           type: "keyword"  },
             { label: "STEP",         type: "keyword"  },
             { label: "NEXT",         type: "keyword"  },
@@ -98,6 +98,7 @@ export function PS2() {
             { label: "TRUE",         type: "keyword"  },
             { label: "FALSE",        type: "keyword"  },
             { label: "CONSTANT",     type: "keyword"  },
+            { label: "PRINT",        type: "function" },
             { label: "OUTPUT",       type: "function" },
             { label: "INPUT",        type: "function" },
             { label: "LEFT",         type: "function" },
@@ -139,9 +140,9 @@ export function PS2() {
             { label: "PRIVATE",       type: "keyword" },
             { label: "INHERITS",       type: "keyword" },
           ];
-          
+
           let identifiers: Array<string> = [];
-               
+
           for (let i = 0; i < tree.length; i++) {
             const cursor = tree.cursor(i);
             if (cursor.type.name === "Identifier") {
