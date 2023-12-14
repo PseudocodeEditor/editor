@@ -30,15 +30,15 @@ Now make your changes.
 
 ### Testing
 
-While there are no automated tests set up, it is highly encouraged that you thoroughly test anything your changes may have effected.
+While there are no automated tests set up, it is highly encouraged that you thoroughly test anything your changes may have affected.
 
-&#x20;If your changes effect the codemirror files, you will need to roll up the editor files to a single file for use in the browser. The repo is already set up with a rollup configuration, so simply run:
+If your changes affect the codemirror files, you will need to roll up the editor files to a single file for use in the browser. The repo is already set up with a rollup configuration, so simply run:
 
 ```bash
 $ npx rollup -c
 ```
 
-Then just serve the project directory. An easy way to do this, if you have python installed, is the following:
+Then just serve the project directory. An easy way to do this, if you have Python installed, is the following:
 
 ```bash
 $ python3 -m http.server 8080
