@@ -1,4 +1,4 @@
-import {PS2} from "../../PS2/";
+import {pseudocode} from "../../pseudocode/";
 
 import {EditorView} from "@codemirror/view";
 import {StateEffect} from "@codemirror/state";
@@ -112,9 +112,9 @@ export function getExtensions() {
     const fileType = name?.substring(name.lastIndexOf(".") + 1, name.length).toLowerCase();
 
     if (getCookie("light-mode") === "true") {
-        return fileType === "psc" ? [PS2(), ...lightThemeExtensions] : lightThemeExtensions
+        return fileType === "psc" ? [pseudocode(), ...lightThemeExtensions] : lightThemeExtensions
     } else {
-        return fileType === "psc" ? [PS2(), ...darkThemeExtensions] : darkThemeExtensions
+        return fileType === "psc" ? [pseudocode(), ...darkThemeExtensions] : darkThemeExtensions
     }
 }
 

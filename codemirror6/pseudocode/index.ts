@@ -3,7 +3,7 @@ import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp, foldInside, s
 import {styleTags, tags as t} from "@lezer/highlight";
 import {CompletionContext} from "@codemirror/autocomplete";
 
-export const PS2Language = LRLanguage.define({
+export const pseudocodeLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [
       indentNodeProp.add({
@@ -41,10 +41,10 @@ export const PS2Language = LRLanguage.define({
   }
 });
 
-export function PS2() {
+export function pseudocode() {
   return new LanguageSupport(
-    PS2Language,
-    PS2Language.data.of({
+    pseudocodeLanguage,
+    pseudocodeLanguage.data.of({
       autocomplete: (context: CompletionContext) => {
         const tree = syntaxTree(context.state);
         const word = context.matchBefore(/\w*/)!;
