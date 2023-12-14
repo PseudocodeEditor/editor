@@ -38,10 +38,10 @@ While there are no automated tests set up, it is highly encouraged that you thor
 $ npx rollup -c
 ```
 
-Then just run the server:
+Then just serve the project directory. An easy way to do this, if you have python installed, is the following:
 
 ```bash
-$ node index.js
+$ python3 -m http.server 8080
 ```
 
 ### Commit and Push Changes:
