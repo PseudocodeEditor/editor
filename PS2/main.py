@@ -57,12 +57,15 @@ def run():
     setTimeout(create_proxy(run_code), 0)
 
 count = 0
-def ready(e):
+def ready(_):
     global count
     count += 1
     if count == 2: # complete a full animation cycle after loading so people can appreciate the pretty snake 🤫
         document.querySelector("#run-button").classList.remove("disabled")
         document.querySelector("#console-run").classList.remove("disabled")
-        document.querySelector("#ps2-loading-overlay").remove()
+
+        overlay = document.querySelector("#ps2-loading-overlay")
+        overlay.classList.add("hide")
+        setTimeout(create_proxy(lambda: overlay.remove()), 300)
 
 document.querySelector("#loader-snake path").addEventListener("animationiteration", create_proxy(ready))

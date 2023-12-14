@@ -626,7 +626,7 @@ label {
 
 #ps2-loading-overlay {
 	position: fixed;
-	z-index: 10;
+	z-index: 20;
 	width: 100vw;
 	height: 100dvh;
 	display: flex;
@@ -642,6 +642,7 @@ label {
 	width: 60vw;
 	max-width: 300px;
 	height: max-content;
+	overflow: visible;
 }
 
 #loader-snake path {
@@ -679,7 +680,7 @@ label {
     z-index: 10;
     display: none;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -697,7 +698,7 @@ label {
     display: -ms-flexbox;
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -719,7 +720,7 @@ label {
     height: auto;
     min-height: auto;
     min-width: 500px;
-    padding: 0vh 0vw;
+    padding: 0dvh 0vw;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
@@ -743,8 +744,8 @@ label {
     display: -ms-flexbox;
     display: flex;
     width: 100%;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+    margin-top: 3dvh;
+    margin-bottom: 3dvh;
     padding-right: 2vw;
     padding-left: 2vw;
     -webkit-box-orient: horizontal;
@@ -763,8 +764,8 @@ label {
 }
 
 .about-done {
-    margin-top: 0vh;
-    margin-bottom: 0vh;
+    margin-top: 0dvh;
+    margin-bottom: 0dvh;
     font-family: 'SF Pro Text', sans-serif;
     color: var(--heading-txt);
     font-size: 15px;
@@ -954,7 +955,7 @@ label {
   height: auto;
   min-height: auto;
   min-width: 420px;
-  padding: 5vh 0px;
+  padding: 5dvh 0px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -977,7 +978,7 @@ label {
   z-index: 10;
   display: none;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -997,7 +998,7 @@ label {
   display: -ms-flexbox;
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1050,7 +1051,7 @@ label {
 
 .alert-cancel {
   margin-top: 17px;
-  margin-bottom: 0vh;
+  margin-bottom: 0dvh;
   -webkit-transition: color 200ms ease;
   transition: color 200ms ease;
   font-family: 'SF Pro Text', sans-serif;
@@ -1104,7 +1105,7 @@ label {
 	display: none;
 	opacity: 0;
 	width: 100vw;
-	height: 100vh;
+	height: 100dvh;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
@@ -1123,7 +1124,7 @@ label {
 	display: -ms-flexbox;
 	display: flex;
 	width: 100vw;
-	height: 100vh;
+	height: 100dvh;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
@@ -1139,8 +1140,8 @@ label {
 }
 
 .welcome-title {
-	margin-top: 6.768vh;
-	margin-bottom: 5.45vh;
+	margin-top: 6.768dvh;
+	margin-bottom: 5.45dvh;
 	font-family: 'SF Pro Display', sans-serif;
 	color: var(--text-clr);
 	font-size: 31px;
@@ -1154,9 +1155,9 @@ label {
 
 .welcome-features {
 	margin-top: 0;
-	margin-bottom: 10vh;
+	margin-bottom: 10dvh;
 	grid-column-gap: 1vw;
-	grid-row-gap: 3.8vh;
+	grid-row-gap: 3.8dvh;
 	-ms-grid-columns: 46px 306px;
 	grid-template-columns: 46px 306px;
 	-ms-grid-rows: auto auto auto;
@@ -1179,7 +1180,7 @@ label {
 }
 
 .feature-description {
-	width: 306px;
+	max-width: 306px;
 	margin-bottom: 0;
 	font-family: 'SF Pro Text', sans-serif;
 	color: var(--secondary-txt);
@@ -1224,7 +1225,7 @@ label {
 
 .welcome-dns {
 	margin-top: 17px;
-	margin-bottom: 4.91vh;
+	margin-bottom: 4.91dvh;
 	-webkit-transition: color .2s ease;
 	transition: color .2s ease;
 	font-family: 'SF Pro Text', sans-serif;
@@ -1574,7 +1575,7 @@ label {
 }
 
 .editor-spacer {
-	height: 40vh
+	height: 40dvh
 }
 
 .theme-select-overlay {
@@ -1582,7 +1583,7 @@ label {
 	z-index: 10;
 	display: none;
 	width: 100vw;
-	height: 100vh;
+	height: 100dvh;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
@@ -1600,7 +1601,7 @@ label {
 	display: -ms-flexbox;
 	display: flex;
 	width: 100vw;
-	height: 100vh;
+	height: 100dvh;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
@@ -1622,7 +1623,7 @@ label {
 	height: auto;
 	min-height: auto;
 	min-width: 500px;
-	padding: 0 2vw 6.2vh;
+	padding: 0 2vw 6.2dvh;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
@@ -1657,8 +1658,8 @@ label {
 	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
-	margin-top: 4vh;
-	margin-bottom: 6vh;
+	margin-top: 4dvh;
+	margin-bottom: 6dvh;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: row;
@@ -1739,7 +1740,7 @@ label {
 }
 
 .theme-preview-title {
-	margin-top: 2.3vh;
+	margin-top: 2.3dvh;
 	margin-bottom: 0;
 	font-family: 'SF Pro Text', sans-serif;
 	color: var(--text-clr);
@@ -1750,11 +1751,11 @@ label {
 }
 
 .theme-selector {
-	width: 2.8vh;
-	height: 2.8vh;
+	width: 2.8dvh;
+	height: 2.8dvh;
 	min-height: 18.5px;
 	min-width: 18.5px;
-	margin-top: 1.1vh;
+	margin-top: 1.1dvh;
 	margin-bottom: 0;
 	background-image: url(https://uploads-ssl.webflow.com/61d2310d1aa0fcffbc0859cc/62542d06901c2730a9d5020e_theme-selector-dark.svg);
 	background-position: 50% 50%;
@@ -2037,28 +2038,17 @@ label {
 	.welcome {
 		min-width: 420px
 	}
-	.welcome-overlay {
-		display: none
-	}
 	.welcome-title {
-		margin-top: 6vh;
-		margin-bottom: 4vh;
-		text-align: center
+		margin-top: 6dvh;
+		margin-bottom: 4dvh;
+		text-align: center;
 	}
 	.welcome-features {
-		display: none
+		grid-template-columns: 46px 200px;
+		margin-bottom: 3dvh;
 	}
 	.theme-select-overlay {
 		display: none
-	}
-	.smaller-device-text {
-		display: block;
-		margin-bottom: 4vh;
-		text-align: center
-	}
-	.welcome-title-lite {
-		display: inline;
-		color: #9f67ef
 	}
 }
 
@@ -2080,7 +2070,7 @@ label {
 		z-index: 3;
 		display: none;
 		width: 100vw;
-		height: 100vh
+		height: 100dvh
 	}
 	.heading {
 		max-width: 95%;
@@ -2125,12 +2115,9 @@ label {
 		width: 90vw;
 		min-width: auto
 	}
-	.welcome-overlay {
-		display: none
-	}
 	.welcome-title {
-		margin-top: 6vh;
-		margin-bottom: 3vh;
+		margin-top: 6dvh;
+		margin-bottom: 3dvh;
 		text-align: center
 	}
 	.theme-select-overlay {
@@ -2152,14 +2139,6 @@ label {
 	.dark-preview-image {
 		width: 32vw;
 		height: auto
-	}
-	.smaller-device-text {
-		width: 72vw;
-		margin-bottom: 4vh;
-		text-align: center
-	}
-	.welcome-title-lite {
-		color: #9f67ef
 	}
   .about {
     width: 85vw;
@@ -2214,7 +2193,7 @@ label {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    margin-bottom: 4vh;
+    margin-bottom: 4dvh;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
