@@ -7,7 +7,7 @@ body.dark {
 	--editor-brdr: #2c2c2e;
 	--console-bg: #151517;
 	--search-bg: #313135;
-	--text-clr: #fff;
+	--text-clr: #ffffff;
   --button-txt: #fff;
 	--secondary-txt: #8f8e92;
 	--overlay-shdw: rgba(0, 0, 0, 0.5);
@@ -622,6 +622,56 @@ label {
 .continue-button:hover {
 	opacity: 0.62;
 	text-decoration: none
+}
+
+#ps2-loading-overlay {
+	position: fixed;
+	z-index: 10;
+	width: 100vw;
+	height: 100dvh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #ccc;
+	gap: 20px;
+}
+
+#loader-snake {
+	width: 60vw;
+	max-width: 300px;
+	height: max-content;
+}
+
+#loader-snake path {
+	stroke-dasharray: 1000 2352.6091988949265;
+	stroke-dashoffset: 0;
+	animation: dash 3.5s infinite ease-in-out;
+}
+
+@keyframes dash {
+	0% {
+		stroke-dashoffset: 3352.6091988949265;
+	}
+	90% {
+		stroke-dashoffset: 0;
+	}
+}
+
+#loader-snake rect {
+	offset-path: path("M270 94C270 94 270.17 94.0811 270.5 94.24M270.5 94.24C282.232 99.8844 496.5 203.709 496.5 257.69C496.5 380.19 393.045 489.69 259.522 489.69C126 489.69 25 358.769 25 257.69C25 156.611 74.0001 19.1899 259.522 25.1899C445.045 31.1899 496.5 143.19 496.5 250.19C496.5 292.19 476.998 488.525 272.5 489.385C200 489.69 175.5 471.807 175.5 471.807C119.5 444.69 156.745 376.69 207.5 395.964L249.5 417.19C300 444.19 331.245 378.111 289.745 354.111L156.745 285.611C113.745 255.798 150.745 200.611 190.245 221.111L325.745 289.111C377.245 312.611 400.745 246.611 360.245 224.111L228.745 156.611C176.967 131.876 213.022 66.8465 259.522 89.3466L270.5 94.24Z");
+	offset-distance: 100%;
+	animation: move 3.5s infinite ease-in-out;
+}
+
+@keyframes move {
+	0% {
+		offset-distance: 0%;
+	}
+	90% {
+		offset-distance: 100%;
+	}
 }
 
 .about-overlay {

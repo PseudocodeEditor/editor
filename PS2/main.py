@@ -56,5 +56,13 @@ def tidy_up():
 def run():
     setTimeout(create_proxy(run_code), 0)
 
-document.querySelector("#run-button").classList.remove("disabled")
-document.querySelector("#console-run").classList.remove("disabled")
+count = 0
+def ready(e):
+    global count
+    count += 1
+    if count == 2: # complete a full animation cycle after loading so people can appreciate the pretty snake 🤫
+        document.querySelector("#run-button").classList.remove("disabled")
+        document.querySelector("#console-run").classList.remove("disabled")
+        document.querySelector("#ps2-loading-overlay").remove()
+
+document.querySelector("#loader-snake path").addEventListener("animationiteration", create_proxy(ready))
