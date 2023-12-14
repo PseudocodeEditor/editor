@@ -52,6 +52,8 @@ import "./misc/sidebars.js";
 import "./misc/dropdowns.js";
 import "./misc/about.js";
 import "./misc/mobile.js";
+import "./misc/minimap.js";
 import "./misc/lineNumbers.js";
+import "./misc/lineWrapping.js";
 import "./misc/codeClipper.js";
 import "./misc/rememberProject.js";

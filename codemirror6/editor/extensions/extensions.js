@@ -1,4 +1,4 @@
-import {EditorView, tooltips} from "@codemirror/view";
+import {tooltips} from "@codemirror/view";
 import {indentUnit} from "@codemirror/language";
 import {basicSetup} from "codemirror";
 import {lineNumbers} from "@codemirror/view";
@@ -9,7 +9,6 @@ import {shortcuts} from "./shortcuts.js";
 
 export const extensions = [
   basicSetup,
-  EditorView.lineWrapping,
   shortcuts,
   indentUnit.of("	"),
   lineNumbers(),

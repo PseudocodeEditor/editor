@@ -111,11 +111,11 @@ export function getExtensions() {
     const name = document.querySelector(".file-title.active .file-name")?.innerText;
     const fileType = name?.substring(name.lastIndexOf(".") + 1, name.length).toLowerCase();
 
-    if (getCookie("light-mode") === "true") {
-        return fileType === "psc" ? [pseudocode(), ...lightThemeExtensions] : lightThemeExtensions
-    } else {
-        return fileType === "psc" ? [pseudocode(), ...darkThemeExtensions] : darkThemeExtensions
-    }
+    const extensions = [...(getCookie("light-mode") === "true" ? lightThemeExtensions : darkThemeExtensions)];
+    if (fileType === "psc") extensions.push(pseudocode());
+    if (getCookie("line-wrapping") !== "off") extensions.push(EditorView.lineWrapping);
+
+    return extensions;
 }
 
 export function updateExtensions() {
