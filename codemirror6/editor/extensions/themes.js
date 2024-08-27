@@ -23,7 +23,8 @@ const psLight = EditorView.theme(
             backgroundColor: "#A4CDFF"
         },
         ".cm-gutters": {
-            color: "#A4A4A4"
+            color: "#A4A4A4",
+            backgroundColor: "FFFFFF"
         },
         ".cm-activeLineGutter": {
             color: "black"
@@ -47,7 +48,8 @@ const psDark = EditorView.theme(
             backgroundColor: "#515B70"
         },
         ".cm-gutters": {
-            color: "#575757"
+            color: "#575757",
+            backgroundColor: "#000000"
         },
         ".cm-activeLineGutter": {
             color: "white"
