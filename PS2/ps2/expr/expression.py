@@ -285,8 +285,8 @@ class FUNCTION(Expression):
                 raise RuntimeError([self.line, f"UCASE() function requires 1 argument, it received {len(self.args)}"])
 
             char  = await self.args[0].evaluate()
-            if not util.isChar(char):
-                raise RuntimeError([self.line, f"UCASE() argument should be of type CHAR"])
+            if not (util.isChar(char) or util.isString(char)):
+                raise RuntimeError([self.line, f"UCASE() argument should be of type CHAR or STRING"])
 
             return char.upper()
 
@@ -295,8 +295,8 @@ class FUNCTION(Expression):
                 raise RuntimeError([self.line, f"LCASE() function requires 1 argument, it received {len(self.args)}"])
 
             char  = await self.args[0].evaluate()
-            if not util.isChar(char):
-                raise RuntimeError([self.line, f"LCASE() argument should be of type CHAR"])
+            if not (util.isChar(char) or util.isString(char)):
+                raise RuntimeError([self.line, f"LCASE() argument should be of type CHAR or STRING"])
 
             return char.lower()
 
