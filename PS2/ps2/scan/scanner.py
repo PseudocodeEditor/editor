@@ -64,6 +64,9 @@ class Scanner:
         elif c == "*":
             self.addToken(TT.STAR)
 
+        elif c == "^":
+            self.addToken(TT.CAP)
+
         elif c == "'":
             self.char()
 

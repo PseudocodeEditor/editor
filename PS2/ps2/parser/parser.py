@@ -710,12 +710,22 @@ class Parser:
         return expr
 
     def factor(self, line):
-        expr = self.unary(line)
+        expr = self.exponential(line)
 
         while self.match([TT.SLASH, TT.STAR, TT.DIV, TT.MOD] ):
             operator = self.previous()
-            right = self.unary(line)
+            right = self.exponential(line)
             expr = BINARY (expr, operator, right, operator.line)
+
+        return expr
+
+    def exponential(self, line):
+        expr = self.unary(line)
+
+        while self.match([TT.CAP]):
+            operator = self.previous()
+            right = self.unary(line)
+            expr = BINARY(expr, operator, right, operator.line)
 
         return expr
 

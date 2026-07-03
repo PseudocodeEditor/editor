@@ -54,7 +54,7 @@ class BINARY(Expression):
 
         # check for valid string operations
         if util.isString(left_value ) and util.isString(right_value ) and \
-            op in [TT.PLUS, TT.MINUS, TT.STAR, TT.SLASH, TT.DIV, TT.MOD]:
+            op in [TT.PLUS, TT.MINUS, TT.STAR, TT.SLASH, TT.DIV, TT.MOD, TT.CAP]:
 
             raise RuntimeError([self.line, f"invalid string operator '{self.operator.lexeme}'"])
 
@@ -74,6 +74,9 @@ class BINARY(Expression):
 
         elif op  == TT.STAR:
             return left_value * right_value
+
+        elif op == TT.CAP:
+            return left_value ** right_value
 
         elif op  == TT.SLASH:
             return left_value / right_value
