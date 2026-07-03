@@ -300,6 +300,22 @@ class FUNCTION(Expression):
 
             return char.lower()
 
+        elif self.name == "SUBSTRING":
+            if len(self.args) != 3:
+                raise RuntimeError([self.line, f"SUBSTRING() function requires 3 arguments, it recieved {len(self.args)}"])
+
+            string, start, length = [await arg.evaluate() for arg in self.args]
+
+            if not util.isString(string):
+                raise RuntimeError([self.line, f"First argument of SUBSTRING() shoyuld be of type STRING"])
+            if not (util.isInteger(start) or start < 1):
+                raise RuntimeError([self.line, f"Second argument of SUBSTRING() should be a positive INTEGER"])
+            if not (util.isInteger(length) or length < 0):
+                raise RuntimeError([self.line, f"Third argument of SUBSTRING() shouble be a non-negative INTEGER"])
+
+            return string[start-1:start+length-1]
+
+
 
         elif self.name == "EOF":
             if len(self.args) != 1:
