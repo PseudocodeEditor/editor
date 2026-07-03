@@ -423,8 +423,8 @@ class Parser:
         else:
             raise SyntaxError([line, f"CONSTANT missing identifier, got {self.peek().lexeme}"])
 
-        if not self.match([TT.EQUAL]):
-            raise SyntaxError([line, f"CONSTANT missing '=', got {self.peek().lexeme}"])
+        if not self.match([TT.EQUAL, TT.ASSIGN]):
+            raise SyntaxError([line, f"CONSTANT missing '=' or '<-', got {self.peek().lexeme}"])
 
         value = self.primary(line)
 
