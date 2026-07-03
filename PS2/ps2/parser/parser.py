@@ -426,6 +426,10 @@ class Parser:
         if not self.match([TT.EQUAL, TT.ASSIGN]):
             raise SyntaxError([line, f"CONSTANT missing '=' or '<-', got {self.peek().lexeme}"])
 
+        negate = False
+        if self.match([TT.MINUS]):
+            negate = True
+
         value = self.primary(line)
 
         if value == None:
@@ -442,9 +446,13 @@ class Parser:
 
         elif type(value) == float:
             vtype = TT.REAL
+            if negate:
+                value = -value
 
         elif type(value) == int:
             vtype = TT.INTEGER
+            if negate:
+                value = -value
 
         else:
             raise SyntaxError([line, f"CONSTANT doesn't recognise value type"])
