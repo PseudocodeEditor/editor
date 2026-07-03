@@ -11,6 +11,10 @@ class Environment:
     def __init__(self):
         self.variables = {}
 
+    def reset():
+        Environment.global_variables = {}
+        Environment.scopes = []
+
     def push(env):
         Environment.scopes.insert(0, env)
 
