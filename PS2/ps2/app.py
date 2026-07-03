@@ -4,6 +4,7 @@ from ps2 import statement
 from ps2.scan.scanner import Scanner
 from ps2.parser.parser import Parser
 from ps2.interpret.interpretor import Interpretor
+from ps2.symbol_table.environment import Environment
 
 from js import document
 from pyodide.ffi import create_proxy
@@ -64,6 +65,7 @@ class PS2:
 
     # Run Interpretor from a file
     async def runCode(code):
+        Environment.reset()
         try:
             tokens     = Scanner(code).scanTokens()
             statements = Parser(tokens).parse()
@@ -76,5 +78,8 @@ class PS2:
             except RuntimeError as e:
                 await PS2.report(e.args[0][0], "Runtime", e.args[0][1])
                 PS2.hadError = False
+            except Exception:
+                import traceback
+                print(traceback.format_exc())
         else:
             PS2.hadError = False

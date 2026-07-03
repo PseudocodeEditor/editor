@@ -25,7 +25,7 @@ class UNARY(Expression):
         elif self.operator.lexeme == 'NOT':
             return not right_value
         else:
-            raise RuntimeError([self.line, f"Internal error - unknown unary operator {self.operator.lexeme}"])
+            raise RuntimeError([self.operator.line, f"Internal error - unknown unary operator {self.operator.lexeme}"])
 
 
 class BINARY(Expression):
@@ -54,7 +54,7 @@ class BINARY(Expression):
 
         # check for valid string operations
         if util.isString(left_value ) and util.isString(right_value ) and \
-            op in [TT.PLUS, TT.MINUS, TT.STAR, TT.SLASH, TT.DIV, TT.MOD]:
+            op in [TT.PLUS, TT.MINUS, TT.STAR, TT.SLASH, TT.DIV, TT.MOD, TT.CAP]:
 
             raise RuntimeError([self.line, f"invalid string operator '{self.operator.lexeme}'"])
 
@@ -74,6 +74,9 @@ class BINARY(Expression):
 
         elif op  == TT.STAR:
             return left_value * right_value
+
+        elif op == TT.CAP:
+            return left_value ** right_value
 
         elif op  == TT.SLASH:
             return left_value / right_value
@@ -299,6 +302,22 @@ class FUNCTION(Expression):
                 raise RuntimeError([self.line, f"LCASE() argument should be of type CHAR or STRING"])
 
             return char.lower()
+
+        elif self.name == "SUBSTRING":
+            if len(self.args) != 3:
+                raise RuntimeError([self.line, f"SUBSTRING() function requires 3 arguments, it recieved {len(self.args)}"])
+
+            string, start, length = [await arg.evaluate() for arg in self.args]
+
+            if not util.isString(string):
+                raise RuntimeError([self.line, f"First argument of SUBSTRING() shoyuld be of type STRING"])
+            if not (util.isInteger(start) or start < 1):
+                raise RuntimeError([self.line, f"Second argument of SUBSTRING() should be a positive INTEGER"])
+            if not (util.isInteger(length) or length < 0):
+                raise RuntimeError([self.line, f"Third argument of SUBSTRING() shouble be a non-negative INTEGER"])
+
+            return string[start-1:start+length-1]
+
 
 
         elif self.name == "EOF":

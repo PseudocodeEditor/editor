@@ -423,8 +423,12 @@ class Parser:
         else:
             raise SyntaxError([line, f"CONSTANT missing identifier, got {self.peek().lexeme}"])
 
-        if not self.match([TT.EQUAL]):
-            raise SyntaxError([line, f"CONSTANT missing '=', got {self.peek().lexeme}"])
+        if not self.match([TT.EQUAL, TT.ASSIGN]):
+            raise SyntaxError([line, f"CONSTANT missing '=' or '<-', got {self.peek().lexeme}"])
+
+        negate = False
+        if self.match([TT.MINUS]):
+            negate = True
 
         value = self.primary(line)
 
@@ -442,9 +446,13 @@ class Parser:
 
         elif type(value) == float:
             vtype = TT.REAL
+            if negate:
+                value = -value
 
         elif type(value) == int:
             vtype = TT.INTEGER
+            if negate:
+                value = -value
 
         else:
             raise SyntaxError([line, f"CONSTANT doesn't recognise value type"])
@@ -710,12 +718,22 @@ class Parser:
         return expr
 
     def factor(self, line):
-        expr = self.unary(line)
+        expr = self.exponential(line)
 
         while self.match([TT.SLASH, TT.STAR, TT.DIV, TT.MOD] ):
             operator = self.previous()
-            right = self.unary(line)
+            right = self.exponential(line)
             expr = BINARY (expr, operator, right, operator.line)
+
+        return expr
+
+    def exponential(self, line):
+        expr = self.unary(line)
+
+        while self.match([TT.CAP]):
+            operator = self.previous()
+            right = self.unary(line)
+            expr = BINARY(expr, operator, right, operator.line)
 
         return expr
 

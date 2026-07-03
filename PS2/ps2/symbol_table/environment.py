@@ -11,6 +11,10 @@ class Environment:
     def __init__(self):
         self.variables = {}
 
+    def reset():
+        Environment.global_variables = {}
+        Environment.scopes = []
+
     def push(env):
         Environment.scopes.insert(0, env)
 
@@ -121,7 +125,7 @@ class Symbol:
         match = utilities.check_type(val, self.vtype, line)
 
         if not match:
-            raise RuntimeError([line, f"Invalid assignment, cannot assign a {utilities.isType(val)} to a {self.vtype.type}"])
+            raise RuntimeError([line, f"Invalid assignment, cannot assign a {utilities.isType(val)} to a {self.vtype.value}"])
 
         return True
 
