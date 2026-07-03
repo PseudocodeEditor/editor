@@ -25,7 +25,7 @@ class UNARY(Expression):
         elif self.operator.lexeme == 'NOT':
             return not right_value
         else:
-            raise RuntimeError([self.line, f"Internal error - unknown unary operator {self.operator.lexeme}"])
+            raise RuntimeError([self.operator.line, f"Internal error - unknown unary operator {self.operator.lexeme}"])
 
 
 class BINARY(Expression):

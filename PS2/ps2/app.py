@@ -78,5 +78,8 @@ class PS2:
             except RuntimeError as e:
                 await PS2.report(e.args[0][0], "Runtime", e.args[0][1])
                 PS2.hadError = False
+            except Exception:
+                import traceback
+                print(traceback.format_exc())
         else:
             PS2.hadError = False

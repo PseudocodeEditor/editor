@@ -125,7 +125,7 @@ class Symbol:
         match = utilities.check_type(val, self.vtype, line)
 
         if not match:
-            raise RuntimeError([line, f"Invalid assignment, cannot assign a {utilities.isType(val)} to a {self.vtype.type}"])
+            raise RuntimeError([line, f"Invalid assignment, cannot assign a {utilities.isType(val)} to a {self.vtype.value}"])
 
         return True
 
